@@ -1,0 +1,44 @@
+
+Science fiction space RPG. User is a bounty hunter, hunting down criminals and turning them in
+for credits. These credits can be used for upgrading your ship, buying better tools, hiring help,
+and other resources like food and fuel. There are mini games in order to capture the criminals, and you can fail these
+minigames. If you fail, that criminal is not added to your hull. There is only so much room in your 
+ship to start out, so you need to return quickly to afford fuel and resources. Some jobs cost more than others.
+
+The user can customize their character, and save it. It will be saved to a Json File, and can be pulled up
+later. Thus, saving the game, profile, etc. If they ever want to save, they just need to type 'save' and
+their game will be saved. The code will be saved to a Json file and kept there until they bring it back
+by typing their character's name.
+
+To start off I need to make objects that relate to the users character, ship, etc. They start off with 
+a set amount of materials, and a starter ship. Gender is not specified, nor is appearance. 
+
+Next I want to do the intro text in the main code. Just to get that going, so that I don't forget, and I
+have a general layout for where I want to go from there.
+
+I want to make many options the user can choose from, for where they want to go to next. Like the shop,
+mechanic, or 'wanted' board. 
+	-Shop first. This will force me to get credits working. They can spend credits, and gain their resources. 
+Like fuel, food, water, better weapons, etc.
+	-Mechanic is where they get the upgrades for their ship. They also have the ability to buy a new ship with all
+upgrades, but the upgrades are cheaper. Impliment how upgrades help. Or most I can in this part.
+	-wated board gives the player a list of randomly created criminals they can go after. The difficulty
+of the criminal adds to the amount of money they will get for capturing that criminal. The mini games direclty
+corrolate with the difficulty of that criminal. 
+
+The criminals are going to take a while. I think I will use inheritance for them, so that I don't need to make 
+a billion different cs files haha. 
+
+The user also has a chance of running into people, who they can potentially hire to help them. This will give
+them a buff catching criminals.
+
+Another feature I want to add, that will bring DateTime into play is the hunger feature. As time passes I want
+their food/fuel to go down. At least until they get more upgrades. This way they aren't constantly in 
+space, at least not at the start. 
+
+Mini Game ideas:
+	- Maze
+	- Word guesser
+	- Snake
+	- Ship Alien Shooter
+
