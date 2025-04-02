@@ -42,3 +42,13 @@ Mini Game ideas:
 	- Snake
 	- Ship Alien Shooter
 
+For tests:
+	- Catching a criminal returns in credits
+	- Giving credits returns with what they bought
+	- Reaching a criminal returns a minigame
+	- Winning a mini game iis catching the criminal
+	- Criminals should not appear twice on the wanted board
+	- Does the game save
+	- Does the game load when pulled up
+
+Cool! I think we're good to get started. Here goes nothing!
