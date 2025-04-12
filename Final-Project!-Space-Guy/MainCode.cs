@@ -16,6 +16,8 @@ namespace Final_Project__Space_Guy
                 "(N)New Game" +
                 "(Q)Quit" +
                 "(S)Settings");
+            string PlayerChoice = Console.ReadLine();
+            MenuChoice(PlayerChoice);
         }
 
     }
