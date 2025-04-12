@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Final_Project__Space_Guy
 {
-    class UserCharacter
+    public class UserCharacter
     {
         public string Name { get; set; }
         public string Description { get; set; }

@@ -18,6 +18,16 @@ namespace Final_Project__Space_Guy
                 "(S)Settings");
             string PlayerChoice = Console.ReadLine();
             MenuChoice(PlayerChoice);
+
+            //MyObject myObject = new MyObject
+            //{
+            //    Id = 1,
+            //    Name = "Sample Object",
+            //    CreatedDate = DateTime.Now
+            //};
+
+            //string filePath = "myObject.json";
+            //JsonFileHandler.SaveObjectToFile(myObject, filePath);
         }
 
     }
