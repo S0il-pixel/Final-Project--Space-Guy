@@ -22,7 +22,7 @@ namespace Final_Project__Space_Guy
 
             //MyObject myObject = new MyObject
             //{
-            //    Id = 1,
+            //    Id = 1
             //    Name = "Sample Object",
             //    CreatedDate = DateTime.Now
             //};
