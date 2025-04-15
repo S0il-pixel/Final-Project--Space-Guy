@@ -8,7 +8,7 @@ namespace Tests
         }
 
         [Test]
-        public void Test1()
+        public void TestMenuChoices()
         {
             Assert.Pass();
         }
