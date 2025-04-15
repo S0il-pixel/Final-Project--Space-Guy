@@ -4,7 +4,7 @@ namespace Program
 {
     public class program
     {
-        public static void MenuChoices(string choice)
+        public static void MenuChoices(char choice)
         {
             switch (choice)
             {
@@ -32,36 +32,35 @@ namespace Program
             }
         }
 
-        private static CheckForSaves() //Just checking if there are saves available. Saves are in a 
+        private static void CheckForSaves() //Just checking if there are saves available. Saves are in a 
         {
 
         }
 
-        public static void NewCharacter(string name, string description)
-        {
-            UserCharacter NewCharacter = new UserCharacter
-            {
-                Name = name
-                Description = description
-                CreatedDate = DateTime.Now
-            }
+        //public static void NewCharacter(string name, string description)
+        //{
+        //    UserCharacter NewCharacter = new UserCharacter
+        //    {
+        //        Name = name
+        //        Description = description
+        //    }
 
-            string filePath = "myObject.json";
-            JsonFileHandler.SaveObjectToFile(myObject, filePath);
-        }
+        //    string filePath = "myObject.json";
+        //    JsonFileHandler.SaveObjectToFile(myObject, filePath);
+        //}
 
-        public static void SaveObjectToFile<T>(T obj, string filePath)
-        {
-            try
-            {
-                string jsonString = JsonConvert.SerializeObject(obj, Formatting.Indented);
-                File.WriteAllText(filePath, jsonString);
-                Console.WriteLine("Object saved successfully.");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"An error occurred: {ex.Message}");
-            }
-        }
+        //public static void SaveObjectToFile<T>(T obj, string filePath)
+        //{
+        //    try
+        //    {
+        //        string jsonString = JsonConvert.SerializeObject(obj, Formatting.Indented);
+        //        File.WriteAllText(filePath, jsonString);
+        //        Console.WriteLine("Object saved successfully.");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine($"An error occurred: {ex.Message}");
+        //    }
+        //}
     }
 }

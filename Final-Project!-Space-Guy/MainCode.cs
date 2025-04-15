@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Final_Project__Space_Guy
 {
-    public class MainCode
+    public class MainCode : Program.program
     {
         public static void Main(string[] args)
         {
@@ -17,7 +17,8 @@ namespace Final_Project__Space_Guy
                 "(Q)Quit" +
                 "(S)Settings");
             string PlayerChoice = Console.ReadLine();
-            MenuChoice(PlayerChoice);
+            char choice = char.Parse(PlayerChoice);
+            MenuChoices(choice);
 
             //MyObject myObject = new MyObject
             //{
