@@ -21,11 +21,11 @@ namespace Program
                 Console.Write("Please enter your name for our systems, bounty hunter: ");
                 string PlayerName = Console.ReadLine();
 
-                PlayerCharacter player = PlayerCharacter.LoadGame(PlayerName) ?? new Player(PlayerName);
+                PlayerCharacter player = PlayerCharacter.LoadGame(PlayerName) ?? new Player(PlayerName); //Creating new player
 
                 Console.WriteLine($"Hello, {player.Name}. You have {player.Credits} credits to your name. To earn credits, catch criminals and earn their bounties.");
 
-
+                MainMenu(player);
            
                     break;
                 case 'Q':
@@ -42,8 +42,6 @@ namespace Program
                     break;
             }
         }
-
-                    MainMenu(player);
             }
 
             static void MainMenu(PlayerCharacter player)
@@ -108,8 +106,8 @@ namespace Program
         static void Mechanic(Player player)
         {
             Console.WriteLine("Welcome to the mechanic! Ship upgrades available:");
-            Console.WriteLine("1. Increase capacity (100 credits)");
-            Console.WriteLine("2. Improve fuel efficiency (150 credits)");
+            Console.WriteLine("1. Increase capacity by 1 (100 credits)");
+            Console.WriteLine("2. Improve fuel efficiency (150 credits)"); 
 
             Console.Write("Choose an upgrade: ");
             string upgradeChoice = Console.ReadLine();
@@ -136,15 +134,14 @@ namespace Program
         {
             List<Criminal> availableCriminals = new List<Criminal>
                         {
-                            new Criminal("Xaroth the Silent", 500, 3),
-                            new Criminal("Vael Stormrider", 800, 5),
+                            new Criminal("Jimmy the Throat Slitter!", 500, 3),
+                            new Criminal("Vael the Shadow Walker", 800, 5),
                             new Criminal("Zorak Bloodfang", 1200, 7)
                         };
-
-            Console.WriteLine("Wanted Board: Choose a criminal to hunt.");
+                        Console.WriteLine("Wanted Board: Choose a criminal to hunt.");
             for (int i = 0; i < availableCriminals.Count; i++)
             {
-                Console.WriteLine($"{i + 1}. {availableCriminals[i].Name} - Bounty: {availableCriminals[i].Bounty} credits");
+                Console.WriteLine($"{i + 1}. {availableCriminals[i].Name} - Bounty: {availableCriminals[i].Bounty} credits"); //looks at list, and shows to player
             }
 
             Console.Write("Enter the number of the criminal you want to hunt: ");
@@ -172,30 +169,6 @@ namespace Program
 
         }
 
-        //public static void NewCharacter(string name, string description)
-        //{
-        //    UserCharacter NewCharacter = new UserCharacter
-        //    {
-        //        Name = name
-        //        Description = description
-        //    }
-
-        //    string filePath = "myObject.json";
-        //    JsonFileHandler.SaveObjectToFile(myObject, filePath);
-        //}
-
-        //public static void SaveObjectToFile<T>(T obj, string filePath)
-        //{
-        //    try
-        //    {
-        //        string jsonString = JsonConvert.SerializeObject(obj, Formatting.Indented);
-        //        File.WriteAllText(filePath, jsonString);
-        //        Console.WriteLine("Object saved successfully.");
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine($"An error occurred: {ex.Message}");
-        //    }
-        //}
+        
     }
 }
