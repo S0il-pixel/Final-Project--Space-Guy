@@ -19,16 +19,16 @@ namespace Program
                 {
                 Console.WriteLine("Welcome to the game, bounty hunter.");
                 Console.Write("Please enter your name for our systems, bounty hunter: ");
-                string playerName = Console.ReadLine();
+                string PlayerName = Console.ReadLine();
 
-                Player player = Player.LoadGame(playerName) ?? new Player(playerName);
+                PlayerCharacter player = PlayerCharacter.LoadGame(PlayerName) ?? new Player(PlayerName);
 
-                Console.WriteLine($"Hello, {player.Name}. You have {player.Credits} credits.");
+                Console.WriteLine($"Hello, {player.Name}. You have {player.Credits} credits to your name. To earn credits, catch criminals and earn their bounties.");
 
                 MainMenu(player);
                 }
 
-                static void MainMenu(Player player)
+                static void MainMenu(PlayerCharacter player)
                 {
                     Dictionary<string, Action<Player>> options = new Dictionary<string, Action<Player>>
                 {
