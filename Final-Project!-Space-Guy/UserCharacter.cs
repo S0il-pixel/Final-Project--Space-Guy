@@ -23,6 +23,8 @@ namespace Final_Project__Space_Guy
         public List<Stuff> Gear { get; set; }
         public Ship PlayerShip { get; set; }
         public List<Criminal> CapturedCriminals { get; set; }
+        public int Hunger { get; set; }
+        private DateTime LastUpdate { get; set; }
 
         public PlayerCharacter(string name, string description)
         {
@@ -33,7 +35,25 @@ namespace Final_Project__Space_Guy
             Gear = new List<Stuff>();
             PlayerShip = new Ship("Starter Ship");
             CapturedCriminals = new List<Criminal>();
+            LastUpdate = DateTime.Now;
         }
+
+        private void UpdateHungerAndFuel()
+        {
+            TimeSpan elapsedTime = DateTime.Now - LastUpdate;
+            int Hours = (int)elapsedTime.TotalHours;
+
+            if (Hours > 0)
+            {
+                Hunger -= Hours * 2; //Lost hunger and fuel over time
+                PlayerShip.Fuel -= Hours * 3;
+                LastUpdate = DateTime.Now; //Reset last updated time
+            }
+
+            Hunger = Math.Max(Hunger, 0); //make sure it can't get to negative hunger or fuel.
+            PlayerShip.Fuel = Math.Max(PlayerShip.Fuel, 0); 
+        }
+
         public void SaveGame()
         {
             string json = JsonConvert.SerializeObject(this, Formatting.Indented);
