@@ -21,7 +21,7 @@ namespace Program
                 Console.Write("Please enter your name for our systems, bounty hunter: ");
                 string PlayerName = Console.ReadLine();
 
-                PlayerCharacter player = PlayerCharacter.LoadGame(PlayerName) ?? new Player(PlayerName); //Either Loading a saved game character, or creating a new character with the new name given.
+                PlayerCharacter player = PlayerCharacter.LoadGame(PlayerName) ?? new Player(PlayerName); //Either Loading a saved game character, or creating a new character with the new name given. ?? means it's nullable or optional
 
                 Console.WriteLine($"Hello, {player.Name}. You have {player.Credits} credits to your name. To earn credits, catch criminals and earn their bounties.");
 
@@ -59,7 +59,7 @@ namespace Program
                     player.UpdateHungerAndFuel();
                     Console.WriteLine($"Hunger: {player.Hunger}  |  Fuel: {player.PlayerShip.Fuel}");
                     Console.WriteLine("Where would you like to go? (shop, mechanic, wanted board, save)");
-                    string choice = Console.ReadLine()?.ToLower(); //Reads the text, and converts all characters to lowercase just to not confuse my code.
+                    string choice = Console.ReadLine()?.ToLower(); //Reads the text, and converts all characters to lowercase just to not confuse my code. ? means nullable/seeing if it works 
 
                     if (options.ContainsKey(choice)) //Takes the choice the player made, and uses the dictionary options to then move to the methods that coinside with their choices. 
                     {
@@ -95,7 +95,7 @@ namespace Program
                 player.Credits -= shopItems[itemChoice];
                 if (itemChoice == "fuel") player.PlayerShip.Fuel += 50;
                 if (itemChoice == "food") player.Hunger += 30;
-                Console.WriteLine($"{itemChoice} purchased! Remaining credits: {player.Credits}");      //I'm going to make this larger, such as adding tools they can buy, and instead of weapon upgrades it's weapons that make the minigames easier.
+                Console.WriteLine($"{itemChoice} purchased! Remaining credits: {player.Credits}");  //I'm going to make this larger, such as adding tools they can buy, and instead of weapon upgrades it's weapons that make the minigames easier.
             }
             else
             {
