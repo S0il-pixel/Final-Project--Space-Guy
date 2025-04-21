@@ -21,7 +21,7 @@ namespace Program
                 Console.Write("Please enter your name for our systems, bounty hunter: ");
                 string PlayerName = Console.ReadLine();
 
-                PlayerCharacter player = PlayerCharacter.LoadGame(PlayerName) ?? new Player(PlayerName); //Creating new player
+                PlayerCharacter player = PlayerCharacter.LoadGame(PlayerName) ?? new Player(PlayerName); //Either Loading a saved game character, or creating a new character with the new name given.
 
                 Console.WriteLine($"Hello, {player.Name}. You have {player.Credits} credits to your name. To earn credits, catch criminals and earn their bounties.");
 
