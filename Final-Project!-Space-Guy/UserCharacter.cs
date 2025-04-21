@@ -56,7 +56,7 @@ namespace Final_Project__Space_Guy
 
         public void SaveGame()
         {
-            string json = JsonConvert.SerializeObject(this, Formatting.Indented);
+            string json = JsonConvert.SerializeObject(this, Formatting.Indented); //Creating the save Json file, serializing the object Player
             File.WriteAllText($"{Name}.json", json);
             Console.WriteLine("Game saved!");
         }
@@ -65,10 +65,10 @@ namespace Final_Project__Space_Guy
         {
             if (File.Exists($"{name}.json"))
             {
-                string json = File.ReadAllText($"{name}.json");
-                return JsonConvert.DeserializeObject<Player>(json);
+                string json = File.ReadAllText($"{name}.json");  
+                return JsonConvert.DeserializeObject<Player>(json); //If the save is found, the Json file is deserialized (the object is created again that was saved), and is then able to be used again.
             }
-            Console.WriteLine("No saved game found.");
+            Console.WriteLine("No saved game found."); //If no save is found, this is what is returned, and the player must create a new save. 
             return null;
         }
     }
@@ -140,8 +140,8 @@ namespace Final_Project__Space_Guy
         public Ship(string name)
         {
             Name = name;
-            Capacity = 5; // Start with space for 5 criminals
-            Fuel = 100;
+            Capacity = 5; // Start with space for 5 criminals (This can be changed)
+            Fuel = 100; //Start with full fuel (This can be expanded)
             Upgrades = new List<string>();
         }
     }
