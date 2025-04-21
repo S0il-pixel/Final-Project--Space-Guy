@@ -137,6 +137,7 @@ namespace Program
                             new Criminal("Jimmy the Throat Slitter!", 500, 1),
                             new Criminal("Vael the Shadow Walker", 800, 2),
                             new Criminal("Zorak Bloodfang", 1200, 3)
+                            new Criminal("Mafie guy: Al Capone!" 2000, 3)
                         };
                         Console.WriteLine("Wanted Board: Choose a criminal to hunt.");
             for (int i = 0; i < availableCriminals.Count; i++)
