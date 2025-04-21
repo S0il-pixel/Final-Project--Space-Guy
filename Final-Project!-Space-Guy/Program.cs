@@ -8,17 +8,12 @@ namespace Program
         {
             switch (choice)
             {
-                case 'O':
-                    //If no saves, this returns an error. If there is saves, open save menu, and let player select one.
-                    Console.WriteLine("Opperational.");
-                    CheckForSaves();
-                    break;
                 case 'N':
 
                    
                 {
                 Console.WriteLine("Welcome to the game, bounty hunter.");
-                Console.Write("Please enter your name for our systems, bounty hunter: ");
+                Console.Write("Please enter your name for our systems, bounty hunter. Or, enter the name of your bounty hunter from a previous save to load that game: ");
                 string PlayerName = Console.ReadLine();
 
                 PlayerCharacter player = PlayerCharacter.LoadGame(PlayerName) ?? new Player(PlayerName); //Either Loading a saved game character, or creating a new character with the new name given. ?? means it's nullable or optional
@@ -30,11 +25,10 @@ namespace Program
                     break;
                 case 'Q':
                     //This will quit the game and close the program.
-                    Console.WriteLine("Quite well");
+                    Console.WriteLine("Closing program...");
                     break;
                 case 'S':
-                    //They can change the game to baby mode, normal mode, or expert mode. 
-                    Console.WriteLine("Snapping");
+                    Console.WriteLine("You think there's settings? This is a text rpg, what in the world are you going to change?");
                     break;
                 case 'T':
                     //Idk, just an easter egg.
