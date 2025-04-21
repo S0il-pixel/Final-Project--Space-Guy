@@ -224,12 +224,6 @@ namespace Program
                 //mini game 3
         }
 
-        private int RandomNumber()
-        {
-            Random random = new Random();
-            return random.Next(1-3);
-        }
-
        
     }
 }
