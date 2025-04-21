@@ -59,9 +59,9 @@ namespace Program
                     player.UpdateHungerAndFuel();
                     Console.WriteLine($"Hunger: {player.Hunger}  |  Fuel: {player.PlayerShip.Fuel}");
                     Console.WriteLine("Where would you like to go? (shop, mechanic, wanted board, save)");
-                    string choice = Console.ReadLine()?.ToLower();
+                    string choice = Console.ReadLine()?.ToLower(); //Reads the text, and converts all characters to lowercase just to not confuse my code.
 
-                    if (options.ContainsKey(choice))
+                    if (options.ContainsKey(choice)) //Takes the choice the player made, and uses the dictionary options to then move to the methods that coinside with their choices. 
                     {
                         options[choice](player);
                     }
@@ -95,7 +95,7 @@ namespace Program
                 player.Credits -= shopItems[itemChoice];
                 if (itemChoice == "fuel") player.PlayerShip.Fuel += 50;
                 if (itemChoice == "food") player.Hunger += 30;
-                Console.WriteLine($"{itemChoice} purchased! Remaining credits: {player.Credits}");
+                Console.WriteLine($"{itemChoice} purchased! Remaining credits: {player.Credits}");      //I'm going to make this larger, such as adding tools they can buy, and instead of weapon upgrades it's weapons that make the minigames easier.
             }
             else
             {
@@ -230,11 +230,6 @@ namespace Program
             return random.Next(1-3);
         }
 
-        private static void CheckForSaves() //Just checking if there are saves available. Saves are in a 
-        {
-
-        }
-
-        
+       
     }
 }

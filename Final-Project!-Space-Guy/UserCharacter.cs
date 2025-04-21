@@ -26,7 +26,7 @@ namespace Final_Project__Space_Guy
         public int Hunger { get; set; }
         private DateTime LastUpdate { get; set; }
 
-        public PlayerCharacter(string name, string description)
+        public PlayerCharacter(string name, string description) //There's so much stuff :,0
         {
             Name = name;
             Description = description;
