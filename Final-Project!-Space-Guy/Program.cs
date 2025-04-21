@@ -134,9 +134,9 @@ namespace Program
         {
             List<Criminal> availableCriminals = new List<Criminal>
                         {
-                            new Criminal("Jimmy the Throat Slitter!", 500, 3),
-                            new Criminal("Vael the Shadow Walker", 800, 5),
-                            new Criminal("Zorak Bloodfang", 1200, 7)
+                            new Criminal("Jimmy the Throat Slitter!", 500, 1),
+                            new Criminal("Vael the Shadow Walker", 800, 2),
+                            new Criminal("Zorak Bloodfang", 1200, 3)
                         };
                         Console.WriteLine("Wanted Board: Choose a criminal to hunt.");
             for (int i = 0; i < availableCriminals.Count; i++)
@@ -152,7 +152,25 @@ namespace Program
                 Criminal target = availableCriminals[choice - 1];
                 Console.WriteLine($"You are now hunting {target.Name}.");
 
-                // Placeholder: Minigame implementation will go here
+                if (target.Difficulty == 1)
+                {
+                    Random random = new Random();
+                    int Number = random.Next(1, 3);
+                    RandomMiniGameEasy(Number);
+                }
+                else if (target.Difficulty == 2)
+                {
+                    Random random = new Random();
+                    int Number = random.Next(1, 3);
+                    RandomMiniGameNormal(Number);
+                }
+                else if (target.Difficulty == 3)
+                {
+                    Random random = new Random();
+                    int Number = random.Next(1, 3);
+                    RandomMiniGameDifficult(Number);
+                }
+                else Console.WriteLine("Error!");
 
                 Console.WriteLine($"Captured {target.Name}! You earn {target.Bounty} credits.");
                 player.CapturedCriminals.Add(target);
@@ -162,6 +180,54 @@ namespace Program
             {
                 Console.WriteLine("Invalid choice.");
             }
+        }
+
+        static void RandomMiniGameEasy(int number)
+        {
+            switch(number)
+
+            case 1:
+                //mini game 1
+                break;
+            case 2:
+                //mini game 2
+                break;
+            case 3:
+                //mini game 3
+        }
+
+        static void RandomMiniGameNormal(int number)
+        {
+            switch(number)
+
+            case 1:
+                //mini game 1
+                break;
+            case 2:
+                //mini game 2
+                break;
+            case 3:
+                //mini game 3
+        }
+
+        static void RandomMiniGameDifficult(int number)
+        {
+            switch(number)
+
+            case 1:
+                //mini game 1
+                break;
+            case 2:
+                //mini game 2
+                break;
+            case 3:
+                //mini game 3
+        }
+
+        private int RandomNumber()
+        {
+            Random random = new Random();
+            return random.Next(1-3);
         }
 
         private static void CheckForSaves() //Just checking if there are saves available. Saves are in a 
