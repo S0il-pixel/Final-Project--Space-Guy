@@ -72,8 +72,8 @@ namespace Program
             player.UpdateHungerAndFuel();
             Dictionary<string, int> shopItems = new Dictionary<string, int>
                         {
-                            { "fuel", 50 },
-                            { "food", 30 },
+                            { "fuel refill", 50 },
+                            { "food refill", 30 },
                             { "weapon upgrade", 200 }
                         };
 
@@ -89,8 +89,8 @@ namespace Program
             if (shopItems.ContainsKey(itemChoice) && player.Credits >= shopItems[itemChoice])
             {
                 player.Credits -= shopItems[itemChoice];
-                if (itemChoice == "fuel") player.PlayerShip.Fuel += 50; //I need to make sure this actually costs something, and also the amount doesn't exceed how much the player can contain. 
-                if (itemChoice == "food") player.Hunger += 30;
+                if (itemChoice == "fuel") player.PlayerShip.Fuel = player.PlayerShip.Fuel; //I need to make sure this actually costs something, and also the amount doesn't exceed how much the player can contain. 
+                if (itemChoice == "food") player.Hunger = player.Hunger;
                 Console.WriteLine($"{itemChoice} purchased! Remaining credits: {player.Credits}");  //I'm going to make this larger, such as adding tools they can buy, and instead of weapon upgrades it's weapons that make the minigames easier.
             }
             else
