@@ -41,7 +41,7 @@ namespace Program
 
             static void MainMenu(PlayerCharacter player)
             {
-                Dictionary<string, Action<PlayerCharacter>> options = new Dictionary<string, Action<PlayerCharacter>>
+                Dictionary<string, Action<PlayerCharacter>> options = new Dictionary<string, Action<PlayerCharacter>> //Creates a new dictionary, where when the key is called by the user, it calls the method that it is connected to in the dictionary. I thought this was a cool use of the dictionary :)
                 {
                 { "shop", Shop },
                 { "mechanic", Mechanic },
