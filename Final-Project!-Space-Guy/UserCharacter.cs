@@ -42,7 +42,7 @@ namespace Final_Project__Space_Guy
         public void UpdateHungerAndFuel()
         {
             TimeSpan elapsedTime = DateTime.Now - LastUpdate;
-            int Hours = (int)elapsedTime.TotalHours;
+            int Hours = (int)elapsedTime.TotalMinutes;
 
             if (Hours > 0)
             {

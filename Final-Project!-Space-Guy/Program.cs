@@ -29,7 +29,7 @@ namespace Program
                     Console.WriteLine("Closing program...");
                     break;
                 case 'S':
-                    Console.WriteLine("You think there's settings? This is a text rpg, what in the world are you going to change?");
+                    Console.WriteLine("You think there's settings? This is a text rpg, what in the world are you going to change?"); //Hehe
                     break;
                 case 'T':
                     //Idk, just an easter egg.
