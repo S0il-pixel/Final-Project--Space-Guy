@@ -46,7 +46,7 @@ namespace Program
                 { "shop", Shop },
                 { "mechanic", Mechanic },
                 { "wanted board", WantedBoard },
-                { "save", p => p.SaveGame() }
+                { "save", p => p.SaveGame() } //Saves the Json file containing the object. Idk where the Json file is rn, but hey, it works :P
                 };
 
                 while (true)
@@ -89,7 +89,7 @@ namespace Program
             if (shopItems.ContainsKey(itemChoice) && player.Credits >= shopItems[itemChoice])
             {
                 player.Credits -= shopItems[itemChoice];
-                if (itemChoice == "fuel") player.PlayerShip.Fuel += 50;
+                if (itemChoice == "fuel") player.PlayerShip.Fuel += 50; //I need to make sure this actually costs something, and also the amount doesn't exceed how much the player can contain. 
                 if (itemChoice == "food") player.Hunger += 30;
                 Console.WriteLine($"{itemChoice} purchased! Remaining credits: {player.Credits}");  //I'm going to make this larger, such as adding tools they can buy, and instead of weapon upgrades it's weapons that make the minigames easier.
             }

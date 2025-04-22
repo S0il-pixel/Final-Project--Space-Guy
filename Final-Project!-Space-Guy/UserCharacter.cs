@@ -141,8 +141,8 @@ namespace Final_Project__Space_Guy
         public Ship(string name)
         {
             Name = name;
-            Capacity = 5; // Start with space for 5 criminals (This can be changed)
-            Fuel = 100; //Start with full fuel (This can be expanded)
+            Capacity = 5; // Start with space for 5 criminals (This can be changed) I need to change this. Cause rn it doesn't do anything. 
+            Fuel = 100; //Start with full fuel (This can be expanded) I need to change this so that you can't get more fuel than you have space for.
             Upgrades = new List<string>();
         }
     }
