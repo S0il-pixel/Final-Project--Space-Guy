@@ -151,22 +151,21 @@ namespace Program
                 Criminal target = availableCriminals[choice - 1];
                 Console.WriteLine($"You are now hunting {target.Name}.");
 
+                Random random = new Random();
+                int Number = random.Next(1, 3);
                 if (target.Difficulty == 1)
-                {
-                    Random random = new Random();
-                    int Number = random.Next(1, 3);
+                {              
+            
                     RandomMiniGameEasy(Number);
                 }
                 else if (target.Difficulty == 2)
                 {
-                    Random random = new Random();
-                    int Number = random.Next(1, 3);
+           
                     RandomMiniGameNormal(Number);
                 }
                 else if (target.Difficulty == 3)
                 {
-                    Random random = new Random();
-                    int Number = random.Next(1, 3);
+                
                     RandomMiniGameDifficult(Number);
                 }
                 else Console.WriteLine("Error!");

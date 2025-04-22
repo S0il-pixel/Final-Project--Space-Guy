@@ -42,7 +42,7 @@ namespace Final_Project__Space_Guy
         public void UpdateHungerAndFuel()
         {
             TimeSpan elapsedTime = DateTime.Now - LastUpdate;
-            int Hours = (int)elapsedTime.TotalMinutes;
+            int Hours = (int)elapsedTime.TotalSeconds;
 
             if (Hours > 0)
             {
@@ -66,6 +66,7 @@ namespace Final_Project__Space_Guy
         {
             if (File.Exists($"{name}.json"))
             {
+                // ~ or .../Final-Project!-Space-Guy/Final-Project!-Space-Guy/Final-Project!-Space-Guy.csproj/jsonfile.
                 string json = File.ReadAllText($"{name}.json");
                 return JsonConvert.DeserializeObject<PlayerCharacter>(json); //If the save is found, the Json file is deserialized (the object is created again that was saved), and is then able to be used again.
             }
