@@ -153,6 +153,7 @@ namespace Program
 
                 Random random = new Random();
                 int Number = random.Next(1, 3);
+
                 if (target.Difficulty == 1)
                 {              
             
@@ -184,7 +185,11 @@ namespace Program
         {
             switch (number)
             {
-
+                            //Maybe you can use tools to type a word for you, rather than having to type it all?
+                            //I think for games, It will have to be typing games. You have to type a sentence in a certain amount of time.
+                            //And tools from the shop can be used to help you. 
+                            //Along with helpers. I think hiring people would give you a BIG advantage. Like getting half of it typed for you
+                            
                 case 1:
                     {
                         //mini game 1

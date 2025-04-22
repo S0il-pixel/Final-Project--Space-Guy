@@ -77,24 +77,6 @@ namespace Final_Project__Space_Guy
 
     public class Stuff
     {
-        public class Weapons
-        {
-            public string Name { get; set; }
-            public string Type { get; set; }
-            public string Description { get; set; }
-            public int Cost { get; set; }
-            public int Damage { get; set; }
-
-            public Weapons(string name, string type, string description, int cost, int damage)
-            {
-                Name = name;
-                Type = type;
-                Description = description;
-                Cost = cost;
-                Damage = damage;
-            }
-        }
-
         public class Tools
         {
             public string Name { get; set; }
@@ -102,33 +84,115 @@ namespace Final_Project__Space_Guy
             public int Cost { get; set; }
             public int UsesLeft { get; set; }
 
-            public Tools(string name, string description, int cost, int usesLeft)
+            public Tools()
             {
-                Name = name;
-                Description = description;
-                Cost = cost;
-                UsesLeft = usesLeft;
+                //This tells the user how this tool helps. 
+               //certain amount of uses. Use this in inheritance and polymorphism
             }
         }
 
-        public class Helpers
+        public class LazerGun : Tools
         {
             public string Name { get; set; }
             public string Description { get; set; }
-            public string Dialogue { get; set; }
-            public string Skills { get; set; }
             public int Cost { get; set; }
-            public List<object> Gear { get; set; }
+            public int UsesLeft { get; set; }
 
-            public Helpers(string name, string description, string dialogue, string skills, int cost, List<object> gear)
+            public LazerGun()
             {
-                Name = name;
-                Description = description;
-                Dialogue = dialogue;
-                Skills = skills;
-                Cost = cost;
-                Gear = gear;
+                Name = "Lazer Gun";
+                Description = "This tool will remove one word for you to type"; 
+                Cost = 30;
+                UsesLeft = 5; 
             }
+        }
+        public class Crowbar : Tools
+        {
+            public string Name { get; set; }
+            public string Description { get; set; }
+            public int Cost { get; set; }
+            public int UsesLeft { get; set; }
+
+            public Crowbar()
+            {
+                Name = "Crow Bar";
+                Description = "This tool will change the difficulty level one lower";
+                Cost = 50;
+                UsesLeft = 3;
+            }
+        }
+        public class LazerRiffle : Tools
+        {
+            public string Name { get; set; }
+            public string Description { get; set; }
+            public int Cost { get; set; }
+            public int UsesLeft { get; set; }
+
+            public LazerRiffle()
+            {
+                Name = "Lazer Riffle";
+                Description = "This tool will remove half of the sentence you need to type";
+                Cost = 500;
+                UsesLeft = 5;
+            }
+        }
+        public class ElectricDagger : Tools
+        {
+            public string Name { get; set; }
+            public string Description { get; set; }
+            public int Cost { get; set; }
+            public int UsesLeft { get; set; }
+
+            public ElectricDagger()
+            {
+                Name = "Electric Charged Dagger";
+                Description = "This tool will extend the time limit by 5 seconds";
+                Cost = 20;
+                UsesLeft = 5;
+            }
+        }
+        public class SaberOfLight : Tools
+        {
+            public string Name { get; set; }
+            public string Description { get; set; }
+            public int Cost { get; set; }
+            public int UsesLeft { get; set; }
+
+            public SaberOfLight()
+            {
+                Name = "The Saber of Light";
+                Description = "This tool will scare the shit out of the criminal, and they will give up and come willingly";
+                Cost = 5200;
+                UsesLeft = 15;
+            }
+        }
+        public class Club : Tools
+        {
+            public string Name { get; set; }
+            public string Description { get; set; }
+            public int Cost { get; set; }
+            public int UsesLeft { get; set; }
+
+            public Club()
+            {
+                Name = "A club.";
+                Description = "This tool will extend the time limit by 20 seconds";
+                Cost = 40;
+                UsesLeft = 5;
+            }
+        }
+    }
+    public class Helpers
+    {
+        public string Name { get; set; }
+        public string Skills { get; set; }
+        public int Cost { get; set; }
+
+        public Helpers(string name, string skills, int cost)
+        {
+            Name = name;
+            Skills = skills; //How they help with mini games
+            Cost = cost;
         }
     }
 
