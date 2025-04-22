@@ -77,7 +77,7 @@ namespace Final_Project__Space_Guy
 
     public class Stuff
     {
-        public class Tools
+        public abstract class Tools
         {
             public string Name { get; set; }
             public string Description { get; set; }
@@ -192,8 +192,11 @@ namespace Final_Project__Space_Guy
         {
             Name = name;
             Skills = skills; //How they help with mini games
-            Cost = cost;
+            Cost = cost; //They have to pay this every week (Use date time)
         }
+
+        private void CharacterStats(); //Fix this
+
     }
 
     public class Ship
