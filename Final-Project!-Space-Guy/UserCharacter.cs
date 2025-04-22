@@ -38,7 +38,7 @@ namespace Final_Project__Space_Guy
             LastUpdate = DateTime.Now;
         }
 
-        private void UpdateHungerAndFuel()
+        public void UpdateHungerAndFuel()
         {
             TimeSpan elapsedTime = DateTime.Now - LastUpdate;
             int Hours = (int)elapsedTime.TotalHours;
@@ -61,12 +61,12 @@ namespace Final_Project__Space_Guy
             Console.WriteLine("Game saved!");
         }
 
-        public static Player LoadGame(string name)
+        public static PlayerCharacter LoadGame(string name)
         {
             if (File.Exists($"{name}.json"))
             {
                 string json = File.ReadAllText($"{name}.json");  
-                return JsonConvert.DeserializeObject<Player>(json); //If the save is found, the Json file is deserialized (the object is created again that was saved), and is then able to be used again.
+                return JsonConvert.DeserializeObject<PlayerCharacter>(json); //If the save is found, the Json file is deserialized (the object is created again that was saved), and is then able to be used again.
             }
             Console.WriteLine("No saved game found."); //If no save is found, this is what is returned, and the player must create a new save. 
             return null;

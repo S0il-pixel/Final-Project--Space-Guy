@@ -10,19 +10,20 @@ namespace Program
             {
                 case 'N':
 
-                   
-                {
-                Console.WriteLine("Welcome to the game, bounty hunter.");
-                Console.Write("Please enter your name for our systems, bounty hunter. Or, enter the name of your bounty hunter from a previous save to load that game: ");
-                string PlayerName = Console.ReadLine();
 
-                PlayerCharacter player = PlayerCharacter.LoadGame(PlayerName) ?? new Player(PlayerName); //Either Loading a saved game character, or creating a new character with the new name given. ?? means it's nullable or optional
+                    {
+                        Console.WriteLine("Welcome to the game, bounty hunter.");
+                        Console.Write("Please enter your name for our systems, bounty hunter. Or, enter the name of your bounty hunter from a previous save to load that game: ");
+                        string PlayerName = Console.ReadLine();
 
-                Console.WriteLine($"Hello, {player.Name}. You have {player.Credits} credits to your name. To earn credits, catch criminals and earn their bounties.");
+                        PlayerCharacter player = PlayerCharacter.LoadGame(PlayerName) ?? new PlayerCharacter(PlayerName, "New character"); //Either Loading a saved game character, or creating a new character with the new name given. ?? means it's nullable or optional
 
-                MainMenu(player);
+                        Console.WriteLine($"Hello, {player.Name}. You have {player.Credits} credits to your name. To earn credits, catch criminals and earn their bounties.");
+
+                        MainMenu(player);
+                        break;
+                    }
            
-                    break;
                 case 'Q':
                     //This will quit the game and close the program.
                     Console.WriteLine("Closing program...");
@@ -36,11 +37,11 @@ namespace Program
                     break;
             }
         }
-            }
+            
 
             static void MainMenu(PlayerCharacter player)
             {
-                Dictionary<string, Action<Player>> options = new Dictionary<string, Action<Player>>
+                Dictionary<string, Action<PlayerCharacter>> options = new Dictionary<string, Action<PlayerCharacter>>
                 {
                 { "shop", Shop },
                 { "mechanic", Mechanic },
@@ -65,8 +66,8 @@ namespace Program
                     }
                 }
             }
-        }
-        static void Shop(Player player)
+        
+        static void Shop(PlayerCharacter player)
         {
             Dictionary<string, int> shopItems = new Dictionary<string, int>
                         {
@@ -97,7 +98,7 @@ namespace Program
             }
         }
 
-        static void Mechanic(Player player)
+        static void Mechanic(PlayerCharacter player)
         {
             Console.WriteLine("Welcome to the mechanic! Ship upgrades available:");
             Console.WriteLine("1. Increase capacity by 1 (100 credits)");
@@ -124,14 +125,14 @@ namespace Program
             }
         }
 
-        static void WantedBoard(Player player)
+        static void WantedBoard(PlayerCharacter player)
         {
             List<Criminal> availableCriminals = new List<Criminal>
                         {
                             new Criminal("Jimmy the Throat Slitter!", 500, 1),
                             new Criminal("Vael the Shadow Walker", 800, 2),
-                            new Criminal("Zorak Bloodfang", 1200, 3)
-                            new Criminal("Mafie guy: Al Capone!" 2000, 3)
+                            new Criminal("Zorak Bloodfang", 1200, 3),
+                            new Criminal("Mafie guy: Al Capone!", 2000, 3)
                         };
                         Console.WriteLine("Wanted Board: Choose a criminal to hunt.");
             for (int i = 0; i < availableCriminals.Count; i++)
@@ -177,46 +178,73 @@ namespace Program
             }
         }
 
-        static void RandomMiniGameEasy(int number)
+        public static void RandomMiniGameEasy(int number)
         {
-            switch(number)
+            switch (number)
+            {
 
-            case 1:
-                //mini game 1
-                break;
-            case 2:
-                //mini game 2
-                break;
-            case 3:
-                //mini game 3
+                case 1:
+                    {
+                        //mini game 1
+                        break;
+                    }
+                case 2:
+                    {
+                        //mini game 2
+                        break;
+                    }
+                case 3:
+                    {
+                        //mini game 3
+                        break;
+                    }
+            }
         }
 
-        static void RandomMiniGameNormal(int number)
+        public static void RandomMiniGameNormal(int number)
         {
-            switch(number)
+            switch (number)
+            {
 
-            case 1:
-                //mini game 1
-                break;
-            case 2:
-                //mini game 2
-                break;
-            case 3:
-                //mini game 3
+                case 1:
+                    {
+                        //mini game 1
+                        break;
+                    }
+                case 2:
+                    {
+                        //mini game 2
+                        break;
+                    }
+                case 3:
+                    {
+                        //mini game 3
+                        break;
+                    }
+            }
         }
 
-        static void RandomMiniGameDifficult(int number)
+        public static void RandomMiniGameDifficult(int number)
         {
-            switch(number)
+            switch (number)
+            {
 
-            case 1:
-                //mini game 1
-                break;
-            case 2:
-                //mini game 2
-                break;
-            case 3:
-                //mini game 3
+                case 1:
+                    {
+                        //mini game 1
+                        break;
+                    }
+                case 2:
+                    {
+                        //mini game 2
+                        break;
+                    }
+                case 3:
+                    {
+                        //mini game 3
+                        break;
+                    }
+            }
         }
 
        
