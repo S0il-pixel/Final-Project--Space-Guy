@@ -35,6 +35,7 @@ namespace Final_Project__Space_Guy
             Gear = new List<Stuff>();
             PlayerShip = new Ship("Starter Ship");
             CapturedCriminals = new List<Criminal>();
+            Hunger = 100;
             LastUpdate = DateTime.Now;
         }
 
