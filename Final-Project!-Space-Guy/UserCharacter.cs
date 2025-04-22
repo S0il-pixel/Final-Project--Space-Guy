@@ -18,8 +18,8 @@ namespace Final_Project__Space_Guy
     {
         public string Name { get; set; }
         public string Description { get; set; }
-        public int Credits { get; set; } 
-        public int Scores { get; set; } 
+        public int Credits { get; set; }
+        public int Scores { get; set; }
         public List<Stuff> Gear { get; set; }
         public Ship PlayerShip { get; set; }
         public List<Criminal> CapturedCriminals { get; set; }
@@ -51,7 +51,7 @@ namespace Final_Project__Space_Guy
             }
 
             Hunger = Math.Max(Hunger, 0); //make sure it can't get to negative hunger or fuel.
-            PlayerShip.Fuel = Math.Max(PlayerShip.Fuel, 0); 
+            PlayerShip.Fuel = Math.Max(PlayerShip.Fuel, 0);
         }
 
         public void SaveGame()
@@ -65,7 +65,7 @@ namespace Final_Project__Space_Guy
         {
             if (File.Exists($"{name}.json"))
             {
-                string json = File.ReadAllText($"{name}.json");  
+                string json = File.ReadAllText($"{name}.json");
                 return JsonConvert.DeserializeObject<PlayerCharacter>(json); //If the save is found, the Json file is deserialized (the object is created again that was saved), and is then able to be used again.
             }
             Console.WriteLine("No saved game found."); //If no save is found, this is what is returned, and the player must create a new save. 
@@ -159,4 +159,5 @@ namespace Final_Project__Space_Guy
             Difficulty = difficulty;
         }
     }
+}
 

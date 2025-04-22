@@ -134,14 +134,14 @@ namespace Program
                             new Criminal("Zorak Bloodfang", 1200, 3),
                             new Criminal("Mafie guy: Al Capone!", 2000, 3)
                         };
-                        Console.WriteLine("Wanted Board: Choose a criminal to hunt.");
+                        Console.WriteLine("Wanted Board: Choose a criminal to hunt, by typing the criminals number on the left side of their name.");
             for (int i = 0; i < availableCriminals.Count; i++)
             {
                 Console.WriteLine($"{i + 1}. {availableCriminals[i].Name} - Bounty: {availableCriminals[i].Bounty} credits"); //looks at list, and shows to player
             }
 
             Console.Write("Enter the number of the criminal you want to hunt: ");
-            int choice = int.Parse(Console.ReadLine());
+            int choice = int.Parse(Console.ReadLine()); //Need to convert to correct formatting.
 
             if (choice > 0 && choice <= availableCriminals.Count)
             {
