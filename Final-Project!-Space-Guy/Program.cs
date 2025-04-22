@@ -69,6 +69,7 @@ namespace Program
         
         static void Shop(PlayerCharacter player)
         {
+            player.UpdateHungerAndFuel();
             Dictionary<string, int> shopItems = new Dictionary<string, int>
                         {
                             { "fuel", 50 },
@@ -100,6 +101,7 @@ namespace Program
 
         static void Mechanic(PlayerCharacter player)
         {
+            player.UpdateHungerAndFuel();
             Console.WriteLine("Welcome to the mechanic! Ship upgrades available:");
             Console.WriteLine("1. Increase capacity by 1 (100 credits)");
             Console.WriteLine("2. Improve fuel efficiency (150 credits)"); 
@@ -127,6 +129,7 @@ namespace Program
 
         static void WantedBoard(PlayerCharacter player)
         {
+            player.UpdateHungerAndFuel();
             List<Criminal> availableCriminals = new List<Criminal>
                         {
                             new Criminal("Jimmy the Throat Slitter!", 500, 1),
