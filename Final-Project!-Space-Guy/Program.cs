@@ -283,9 +283,10 @@ namespace Program
                 }
                 else
                 {
-                    Console.WriteLine($"Oops! You didn't type the sentence correctly. Try again!");
+                    Console.WriteLine($"Oops! You didn't type the sentence correctly, and the criminal escaped. Try again!");
                 }
             }
+            if ()//if they have tools, it changes. 
             else
             {
                 Console.WriteLine($"Time's up! The criminal has gotten away. Better luck next time!");
