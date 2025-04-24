@@ -46,6 +46,7 @@ namespace Program
                 { "shop", Shop },
                 { "mechanic", Mechanic },
                 { "wanted board", WantedBoard },
+                { "guilds for hire", Guilds },
                 { "save", p => p.SaveGame() } //Saves the Json file containing the object. Idk where the Json file is rn, but hey, it works :P
                 };
 
@@ -75,6 +76,12 @@ namespace Program
                             { "fuel refill", 50 },
                             { "food refill", 30 },
                             { "weapon upgrade", 200 }
+                            { "Lazer Gun", 30 }
+                            { "Crowbar", 50 }
+                            { "Lazer Riffle", 500 }
+                            { "Electric Charged Dagger", 20 }
+                            { "Saber of Light", 5200 }
+                            { "Club", 40 }
                         };
 
             Console.WriteLine("Welcome to the shop! Items available:");
@@ -91,6 +98,12 @@ namespace Program
                 player.Credits -= shopItems[itemChoice];
                 if (itemChoice == "fuel") player.PlayerShip.Fuel = player.PlayerShip.Fuel; //I need to make sure this actually costs something, and also the amount doesn't exceed how much the player can contain. 
                 if (itemChoice == "food") player.Hunger = player.Hunger;
+                if (itemChoice == "Lazer Gun") player.Gear.Add(LazerGun());
+                if (itemChoice) == "Crowbar") player.Gear.Add(Crowbar());
+                if (itemChoice) == "Lazer Riffle") player.Gear.Add(LazerRiffle());
+                if (itemChoice) == "Electric Charged Dagger") player.Gear.Add(ElectricDagger());
+                if (itemChoice) == "Saber of Light") player.Gear.Add(SaberOfLight());
+                if (itemChoice) == "Club") player.Gear.Add(Club());
                 Console.WriteLine($"{itemChoice} purchased! Remaining credits: {player.Credits}");  //I'm going to make this larger, such as adding tools they can buy, and instead of weapon upgrades it's weapons that make the minigames easier.
             }
             else
@@ -304,7 +317,7 @@ namespace Program
                     Console.WriteLine($"Oops! You didn't type the sentence correctly, and the criminal escaped. Try again!");
                 }
             }
-            else if (player.Gear.Contains(LazerRiffle()) && userInput <= 30)
+            else if (player.Gear.Contains(LazerRiffle()) && userInput <= 25)
             {
                 if (userInput == sentenceToType)
                 {
@@ -345,6 +358,26 @@ namespace Program
             {
                 Console.WriteLine($"Time's up! The criminal has gotten away. Better luck next time!");
             }
+        }
+
+        public void Guilds(PlayerCharacter player)
+        {
+            player.UpdateHungerAndFuel();
+            List<Helpers> availableHelpers = new List<Helpers>
+                        {
+                            new Helpers("Shane","Will go off and collect criminals. Will give you 60% of the credits they earn.", 3000),
+                            new Helpers("Amanda", "Will make you food, so that you don't go hungry while out in space.", 5000),
+                            new Helpers("Angela", "Will help you catch criminals, expanding the time limit for the mini game.", 6000),
+                            new Helpers("Keith", "Will add solar and nuclear power to your ship, so you don't need fuel anymore.", 8000)
+                        };
+            Console.WriteLine("To hire a person, please type the number beside their name.");
+            for (int i = 0; i < availableHelpers.Count; i++)
+            {
+                Console.WriteLine($"{i + 1}. {availableHelpers[i].Name} - Description: {availableHelpers[i].Skills} - Cost: {availableHelpers[i].Cost} credits"); //looks at list, and shows to player
+            }
+
+            Console.Write("Enter the number of the person you want to hire: ");
+            int choice = int.Parse(Console.ReadLine()); //Need to convert to correct formatting.
         }
     }
 

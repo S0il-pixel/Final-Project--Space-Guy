@@ -131,7 +131,7 @@ namespace Final_Project__Space_Guy
             public LazerRiffle()
             {
                 Name = "Lazer Riffle";
-                Description = "This tool will add twenty seconds to your time";
+                Description = "This tool will add twenty five seconds to your time";
                 Cost = 500;
                 UsesLeft = 5;
             }
@@ -146,7 +146,7 @@ namespace Final_Project__Space_Guy
             public ElectricDagger()
             {
                 Name = "Electric Charged Dagger";
-                Description = "This tool will extend the time limit by 25 seconds";
+                Description = "This tool will extend the time limit by 15 seconds";
                 Cost = 20;
                 UsesLeft = 5;
             }
