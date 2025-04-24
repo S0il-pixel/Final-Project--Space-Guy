@@ -71,6 +71,45 @@ namespace Tests
                     // Assert
                     Assert.Equal("Normal mini-game triggered!", miniGameMessage);
                 }
+
+                [Fact]
+                public void ValidChoice_ShouldInvokeCorrectAction()
+                {
+                    // Arrange
+                    var player = new PlayerCharacter();
+                    var system = new MainMenuSystem();
+                    string simulatedInput = "shop";
+                    string capturedOutput = string.Empty;
+
+                    Func<string> inputProvider = () => simulatedInput;
+                    Action<string> outputProvider = output => capturedOutput = output;
+
+                    // Act
+                    system.MainMenu(player, inputProvider, outputProvider);
+
+                    // Assert
+                    Assert.Contains("Hunger:", capturedOutput);
+                    Assert.Contains("Fuel:", capturedOutput);
+                }
+
+                [Fact]
+                public void InvalidChoice_ShouldProvideErrorMessage()
+                {
+                    // Arrange
+                    var player = new PlayerCharacter();
+                    var system = new MainMenuSystem();
+                    string simulatedInput = "invalid";
+                    string capturedOutput = string.Empty;
+
+                    Func<string> inputProvider = () => simulatedInput;
+                    Action<string> outputProvider = output => capturedOutput = output;
+
+                    // Act
+                    system.MainMenu(player, inputProvider, outputProvider);
+
+                    // Assert
+                    Assert.Contains("Invalid choice.", capturedOutput);
+                }
         }
     }
 }
