@@ -193,16 +193,19 @@ namespace Program
                 case 1:
                     {
                         //mini game 1
+                        Game("The criminal runs, and jumps over a barel.")
                         break;
                     }
                 case 2:
                     {
                         //mini game 2
+                        Game("The criminal tries to shoot you!")
                         break;
                     }
                 case 3:
                     {
                         //mini game 3
+                        Game("You find your target, and throw a rock.")
                         break;
                     }
             }
@@ -216,16 +219,19 @@ namespace Program
                 case 1:
                     {
                         //mini game 1
+                        Game("The criminal has attacked you, you dodge but the criminal persists!");
                         break;
                     }
                 case 2:
                     {
                         //mini game 2
+                        Game("Where did he go? Lookout! Your target is behind you!");
                         break;
                     }
                 case 3:
                     {
                         //mini game 3
+                        Game("The criminal was sleeping when you found them, but is it safe?");
                         break;
                     }
             }
@@ -239,21 +245,54 @@ namespace Program
                 case 1:
                     {
                         //mini game 1
+                        Game("The criminal attacks your ship with their band of criminals, you have to fight them off, quickly!");
                         break;
                     }
                 case 2:
                     {
                         //mini game 2
+                        Game("They have a secret base, that is very hard to find. And when you find it, they wer waiting for you! It's a trap!");
                         break;
                     }
                 case 3:
                     {
                         //mini game 3
+                        Game("You shoot at the criminal with your blaster, but they dodge with skill. How will you ever catch the evil doer?");
                         break;
                     }
             }
         }
 
-       
+        public static void Game(string sentence)
+        {
+            Console.WriteLine("Your sentence to type is:");
+            Console.WriteLine(sentence);
+            Console.WriteLine("You have 10 seconds to type the sentence exactly as shown. Ready? Go!");
+
+            DateTime startTime = DateTime.Now;
+            string userInput = Console.ReadLine();
+            DateTime endTime = DateTime.Now;
+
+            TimeSpan timeTaken = endTime - startTime;
+
+            if (timeTaken.TotalSeconds <= 10)
+            {
+                if (userInput == sentenceToType)
+                {
+                    Console.WriteLine($"Great job! You typed the sentence correctly in {timeTaken.TotalSeconds:F2} seconds. You have caught the criminal!");
+                }
+                else
+                {
+                    Console.WriteLine($"Oops! You didn't type the sentence correctly. Try again!");
+                }
+            }
+            else
+            {
+                Console.WriteLine($"Time's up! The criminal has gotten away. Better luck next time!");
+            }
+        }
     }
+
+
+}
 }
