@@ -10,12 +10,12 @@ namespace Tests
                 {
                     // Arrange
                     List<Criminal> availableCriminals = new List<Criminal>
-                {
+                    {
                     new Criminal("Jimmy the Throat Slitter!", 500, 1),
                     new Criminal("Vael the Shadow Walker", 800, 2),
                     new Criminal("Zorak Bloodfang", 1200, 3),
                     new Criminal("Mafie guy: Al Capone!", 2000, 3)
-                };
+                    };
 
                     int userChoice = 2; // Simulate choosing "Vael the Shadow Walker"
 
