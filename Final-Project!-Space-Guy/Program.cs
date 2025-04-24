@@ -185,10 +185,6 @@ namespace Program
         {
             switch (number)
             {
-                            //Maybe you can use tools to type a word for you, rather than having to type it all?
-                            //I think for games, It will have to be typing games. You have to type a sentence in a certain amount of time.
-                            //And tools from the shop can be used to help you. 
-                            //Along with helpers. I think hiring people would give you a BIG advantage. Like getting half of it typed for you
                             
                 case 1:
                     {
@@ -263,7 +259,7 @@ namespace Program
             }
         }
 
-        public static void Game(string sentence)
+        public static void Game(PlayerCharacter player, string sentence)
         {
             Console.WriteLine("Your sentence to type is:");
             Console.WriteLine(sentence);
@@ -286,7 +282,65 @@ namespace Program
                     Console.WriteLine($"Oops! You didn't type the sentence correctly, and the criminal escaped. Try again!");
                 }
             }
-            if ()//if they have tools, it changes. 
+            else if (player.Gear.Contains(LazerGun()) && userInput <= 15)
+            {//if they have tools, it changes. 
+                if (userInput == sentenceToType)
+                {
+                    Console.WriteLine($"Great job! You typed the sentence correctly in {timeTaken.TotalSeconds:F2} seconds. You have caught the criminal!");
+                }
+                else
+                {
+                    Console.WriteLine($"Oops! You didn't type the sentence correctly, and the criminal escaped. Try again!");
+                }
+            }
+            else if (player.Gear.Contains(CrowBar()) && userInput <= 20)
+            {
+                if (userInput == sentenceToType)
+                {
+                    Console.WriteLine($"Great job! You typed the sentence correctly in {timeTaken.TotalSeconds:F2} seconds. You have caught the criminal!"); //F2 means a float point number. So it has two decimal places only.
+                }
+                else
+                {
+                    Console.WriteLine($"Oops! You didn't type the sentence correctly, and the criminal escaped. Try again!");
+                }
+            }
+            else if (player.Gear.Contains(LazerRiffle()) && userInput <= 30)
+            {
+                if (userInput == sentenceToType)
+                {
+                    Console.WriteLine($"Great job! You typed the sentence correctly in {timeTaken.TotalSeconds:F2} seconds. You have caught the criminal!");
+                }
+                else
+                {
+                    Console.WriteLine($"Oops! You didn't type the sentence correctly, and the criminal escaped. Try again!");
+                }
+            }
+            else if (player.Gear.Contains(ElectricDagger()) && userInput <= 35)
+            {
+                if (userInput == sentenceToType)
+                {
+                    Console.WriteLine($"Great job! You typed the sentence correctly in {timeTaken.TotalSeconds:F2} seconds. You have caught the criminal!");
+                }
+                else
+                {
+                    Console.WriteLine($"Oops! You didn't type the sentence correctly, and the criminal escaped. Try again!");
+                }
+            }
+            else if (player.Gear.Contains(Club()) && userInput <= 40)
+            {
+                if (userInput == sentenceToType)
+                {
+                    Console.WriteLine($"Great job! You typed the sentence correctly in {timeTaken.TotalSeconds:F2} seconds. You have caught the criminal!");
+                }
+                else
+                {
+                    Console.WriteLine($"Oops! You didn't type the sentence correctly, and the criminal escaped. Try again!");
+                }
+            }
+            else if (player.Gear.Contains(SaberOfLight())
+            {
+                Console.WriteLine("The criminal shit themselves out of fear, and you caught them! Good work!");
+            }
             else
             {
                 Console.WriteLine($"Time's up! The criminal has gotten away. Better luck next time!");

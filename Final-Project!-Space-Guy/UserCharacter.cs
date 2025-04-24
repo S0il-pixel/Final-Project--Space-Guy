@@ -101,7 +101,7 @@ namespace Final_Project__Space_Guy
             public LazerGun()
             {
                 Name = "Lazer Gun";
-                Description = "This tool will remove one word for you to type"; 
+                Description = "This tool will add five seconds to your time."; 
                 Cost = 30;
                 UsesLeft = 5; 
             }
@@ -116,7 +116,7 @@ namespace Final_Project__Space_Guy
             public Crowbar()
             {
                 Name = "Crow Bar";
-                Description = "This tool will change the difficulty level one lower";
+                Description = "This tool will add ten seconds to your time.";
                 Cost = 50;
                 UsesLeft = 3;
             }
@@ -131,7 +131,7 @@ namespace Final_Project__Space_Guy
             public LazerRiffle()
             {
                 Name = "Lazer Riffle";
-                Description = "This tool will remove half of the sentence you need to type";
+                Description = "This tool will add twenty seconds to your time";
                 Cost = 500;
                 UsesLeft = 5;
             }
@@ -146,7 +146,7 @@ namespace Final_Project__Space_Guy
             public ElectricDagger()
             {
                 Name = "Electric Charged Dagger";
-                Description = "This tool will extend the time limit by 5 seconds";
+                Description = "This tool will extend the time limit by 25 seconds";
                 Cost = 20;
                 UsesLeft = 5;
             }
@@ -176,7 +176,7 @@ namespace Final_Project__Space_Guy
             public Club()
             {
                 Name = "A club.";
-                Description = "This tool will extend the time limit by 20 seconds";
+                Description = "This tool will extend the time limit by 30 seconds";
                 Cost = 40;
                 UsesLeft = 5;
             }
