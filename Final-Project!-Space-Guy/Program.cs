@@ -47,6 +47,7 @@ namespace Program
                 { "mechanic", Mechanic },
                 { "wanted board", WantedBoard },
                 { "guilds for hire", Guilds },
+                { "other planets to explore", PlanetExploration}
                 { "save", p => p.SaveGame() } //Saves the Json file containing the object. Idk where the Json file is rn, but hey, it works :P
                 };
 
@@ -176,7 +177,7 @@ namespace Program
             filteredCriminals.ForEach(c => Console.WriteLine($"Name: {Criminal.Name}, Bounty: {Criminal.Bounty}, Difficulty: {Criminal.Difficulty}"));
 
             Console.Write("Enter the name of the criminal you want to hunt: ");
-            string choice = Console.ReadLine(); 
+            string choice = Console.ReadLine();
 
             if (choice == availableCriminals[Criminal.Name])
             {
@@ -423,7 +424,7 @@ namespace Program
                     Console.WriteLine("The intern plops down into a chair on your ship, waiting to head out to catch one of those bastardly criminals!");
 
                 }
-                if (helper.Role == WorkerRole.Engineer )
+                if (helper.Role == WorkerRole.Engineer)
                 {
                     await helper.CompleteMissionAsync(helper, "Fixing up your ship, upgrading it so it will never need that silly fuel ever again!", 30);
 
@@ -437,7 +438,17 @@ namespace Program
                 Console.WriteLine("Invalid choice.");
             }
         }
+
+        public void PlanetExploration(PlayerCharacter player)
+        {
+            Console.WriteLine("Exploring different planets depleats your fuel and food, but will take you to unique places with interesting things to do!");
+            DisplayPlanets();
+
+        }
+
     }
+
+}
 
 
 }

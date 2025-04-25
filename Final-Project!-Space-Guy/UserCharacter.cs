@@ -257,6 +257,7 @@ public class Ship
     Intern,
     Engineer
 }
+
 public class Helpers
 {
     public string Name { get; set; }
@@ -289,3 +290,74 @@ public class Helpers
     }
 }
 
+[AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
+public class PlanetAttribute : Attribute
+{
+    public string TerrainType { get; }
+    public int DangerLevel { get; }
+    public string UniqueResource { get; }
+
+    public PlanetAttribute(string terrainType, int dangerLevel, string uniqueResource)
+    {
+        TerrainType = terrainType;
+        DangerLevel = dangerLevel;
+        UniqueResource = uniqueResource;
+    }
+}
+[Planet("Rocky", 1, "Rare Minerals")]
+public class TerraPrime
+{
+    public string Name => "Terra Prime";
+    public string Description => "A rocky planet rich in rare minerals and suitable for exploration.";
+}
+
+[Planet("Desert", 2, "Alien Fossils")]
+public class Arachon
+{
+    public string Name => "Arachon";
+    public string Description => "A harsh desert planet where alien fossils can be discovered.";
+}
+
+[Planet("Forest", 3, "Mystic Plants")]
+public class Sylva
+{
+    public string Name => "Sylva";
+    public string Description => "A dense forest planet teeming with mystic plants and hidden dangers.";
+}
+
+[Planet("Frozen", 2, "Crystal Ice")]
+public class Cryon
+{
+    public string Name => "Cryon";
+    public string Description => "A frozen wasteland hiding crystalline ice under its glaciers.";
+}
+
+[Planet("Volcanic", 4, "Lava Stones")]
+public class Pyronis
+{
+    public string Name => "Pyronis";
+    public string Description => "A volatile volcanic planet where lava stones can be harvested.";
+}
+
+public static void DisplayPlanets()
+{
+    var planetTypes = Assembly.GetExecutingAssembly().GetTypes()
+        .Where(t => t.GetCustomAttributes<PlanetAttribute>().Any());
+
+    foreach (var type in planetTypes)
+    {
+        var attribute = type.GetCustomAttribute<PlanetAttribute>();
+        var nameProperty = type.GetProperty("Name");
+        var descriptionProperty = type.GetProperty("Description");
+
+        string name = nameProperty?.GetValue(Activator.CreateInstance(type))?.ToString() ?? "Unknown";
+        string description = descriptionProperty?.GetValue(Activator.CreateInstance(type))?.ToString() ?? "No description available.";
+
+        Console.WriteLine($"Planet: {name}");
+        Console.WriteLine($"Description: {description}");
+        Console.WriteLine($"Terrain: {attribute.TerrainType}");
+        Console.WriteLine($"Danger Level: {attribute.DangerLevel}");
+        Console.WriteLine($"Unique Resource: {attribute.UniqueResource}");
+        Console.WriteLine("-------------------------------");
+    }
+}
