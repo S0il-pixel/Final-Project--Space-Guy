@@ -12,6 +12,7 @@ namespace Final_Project__Space_Guy
         {
             try
             {
+                DateTime startT = DateTime.Now;
                 Console.WriteLine("Welcome to the Space Bounty Hunter RPG game! You are at the main menu. To select an option, type in the letter in the brackets() beside the option.");
                 Console.WriteLine(
                     "(N)New Game" +
@@ -20,8 +21,10 @@ namespace Final_Project__Space_Guy
                 string PlayerChoice = Console.ReadLine();
                 char choice = char.Parse(PlayerChoice);
                 MenuChoices(choice);
+                DateTime endT = DateTime.Now;
             }
-            catch (Exception ex) { Console.WriteLine($"Error!: {ex.Message}");
+            catch (Exception ex) { Console.WriteLine($"Error!: {ex.Message}"); }
+
         }
 
     }

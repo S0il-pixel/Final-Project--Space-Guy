@@ -182,24 +182,10 @@ namespace Final_Project__Space_Guy
             }
         }
     }
-    public class Helpers
-    {
-        public string Name { get; set; }
-        public string Skills { get; set; }
-        public int Cost { get; set; }
+}
 
-        public Helpers(string name, string skills, int cost)
-        {
-            Name = name;
-            Skills = skills; //How they help with mini games
-            Cost = cost; //They have to pay this every week (Use date time)
-        }
 
-        private void CharacterStats(); //Fix this
-
-    }
-
-    public class Ship
+public class Ship
     {
         public string Name { get; set; }
         public int Capacity { get; set; }
@@ -227,6 +213,45 @@ namespace Final_Project__Space_Guy
             Bounty = bounty;
             Difficulty = difficulty;
         }
+    }
+}
+
+ public enum WorkerRole
+{
+    Soldier,
+    Cook,
+    Intern,
+    Engineer
+}
+public class Helpers
+{
+    public string Name { get; set; }
+    public string Skills { get; set; }
+    public WorkerRole Role { get; set; }
+    public int Cost { get; set; }
+
+    public Helpers(string name, string skills, WorkerRole role, int cost)
+    {
+        Name = name;
+        Skills = skills; //How they help with mini games
+        Role = role;
+        Cost = cost; //They have to pay this every week (Use date time)
+    }
+
+    private void CharacterStats(); //Fix this
+
+    public async Task CompleteMissionAsync(Helpers helper, string Task, int HowLongTaskTakes)
+    {
+        Console.WriteLine($"{helper.Name}, the {helper.Role}, is starting their task: {Task}.");
+        DateTime startTime = DateTime.Now;
+        Console.WriteLine($"Mission Start Time: {startTime}");
+
+        // Simulate mission work
+        await Task.Delay(HowLongTaskTakes * 1000);
+
+        DateTime endTime = DateTime.Now;
+        Console.WriteLine($"Task Completed! End Time: {endTime}");
+        Console.WriteLine($"{helper.Name} successfully completed their task: '{Task}' in {(endTime - startTime).TotalSeconds} seconds.");
     }
 }
 

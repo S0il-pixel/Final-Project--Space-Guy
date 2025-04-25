@@ -360,15 +360,15 @@ namespace Program
             }
         }
 
-        public void Guilds(PlayerCharacter player)
+        public async void Guilds(PlayerCharacter player)
         {
             player.UpdateHungerAndFuel();
             List<Helpers> availableHelpers = new List<Helpers>
                         {
-                            new Helpers("Shane","Will go off and collect criminals. Will give you 60% of the credits they earn.", 3000),
-                            new Helpers("Amanda", "Will make you food, so that you don't go hungry while out in space.", 5000),
-                            new Helpers("Angela", "Will help you catch criminals, expanding the time limit for the mini game.", 6000),
-                            new Helpers("Keith", "Will add solar and nuclear power to your ship, so you don't need fuel anymore.", 8000)
+                            new Helpers("Shane","Will go off and collect criminals. Will give you 60% of the credits they earn.", Soldier, 3000),
+                            new Helpers("Amanda", "Will make you food, so that you don't go hungry while out in space.", Cook, 5000),
+                            new Helpers("Angela", "Will help you catch criminals, expanding the time limit for the mini game.", Intern, 6000),
+                            new Helpers("Keith", "Will add solar and nuclear power to your ship, so you don't need fuel anymore.", Engineer, 8000)
                         };
             Console.WriteLine("To hire a person, please type the number beside their name.");
             for (int i = 0; i < availableHelpers.Count; i++)
@@ -378,6 +378,45 @@ namespace Program
 
             Console.Write("Enter the number of the person you want to hire: ");
             int choice = int.Parse(Console.ReadLine()); //Need to convert to correct formatting.
+
+            if (choice > 0 && choice <= availableHelpers.Count)
+            {
+                Helpers helper = availableHelpers[choice - 1];
+                Console.WriteLine($"You have hired {helper.Name}, and they have joined your crew");
+                Console.WriteLine($"{helper.Name} will now begin to do their job.");
+
+                if (helper.Role == WorkerRole.Soldier)
+                {
+                    await helper.CompleteMissionAsync(helper, "Going off to catch a criminal in your name, and they will give you 60% of the reward.", 12)
+
+                    Console.WriteLine($"They have succeeded! {helper.Name} gives you 300 credits.");
+                    player.Credits += 300;
+                }
+                if (helper.Role == WorkerRole.Cook)
+                {
+                    await helper.CompleteMissionAsync(helper, "Cooking food for you and any others you have on your ship.", 5);
+
+                    Console.WriteLine($"They have succeeded, and the ship smells like fresh cooked food! {helper.Name} has done a great job.");
+                    player.Hunger = 10000000000000;
+                }
+                if (helper.Role == WorkerRole.Intern)
+                {
+                    Console.WriteLine("The intern plops down into a chair on your ship, waiting to head out to catch one of those bastardly criminals!");
+
+                }
+                if (helper.Role == WorkerRole.Engineer )
+                {
+                    await helper.CompleteMissionAsync(helper, "Fixing up your ship, upgrading it so it will never need that silly fuel ever again!", 30);
+
+                    Console.WriteLine($"After quite some time, the tired but accomplished {helper.Name} reports that your ship is ready to go!");
+                    player.PlayerShip.Fuel = 1000000000000000;
+                }
+
+            }
+            else
+            {
+                Console.WriteLine("Invalid choice.");
+            }
         }
     }
 
