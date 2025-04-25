@@ -161,9 +161,9 @@ namespace Program
             var filteredCriminals = criminals.Where(Criminals => Criminals.Difficulty == difficulty).ToList();
 
             Console.WriteLine($"Criminals with difficulty {Criminal.Difficulty}:");
-            filteredCriminals.ForEach(c => Console.WriteLine($"Name: {c.Name}, Bounty: {c.Bounty}, Difficulty: {c.Difficulty}"));
-
+            filteredCriminals.ForEach(c => Console.WriteLine($"Name: {Criminal.Name}, Bounty: {Criminal.Bounty}, Difficulty: {Criminal.Difficulty}"));
             //I slipped the LINQ in there XD
+
             //for (int i = 0; i < availableCriminals.Count; i++)
             //{
             //    Console.WriteLine($"{i + 1}. {availableCriminals[i].Name} - Bounty: {availableCriminals[i].Bounty} credits"); //looks at list, and shows to player
