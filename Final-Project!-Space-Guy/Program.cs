@@ -47,7 +47,8 @@ namespace Program
                 { "mechanic", Mechanic },
                 { "wanted board", WantedBoard },
                 { "guilds for hire", Guilds },
-                { "planets in your area", PlanetExploration}
+                { "planets in your area", PlanetExploration},
+                { "back to menu", MenuChoices},
                 { "save", p => p.SaveGame() } //Saves the Json file containing the object. Idk where the Json file is rn, but hey, it works :P
                 };
 
