@@ -39,8 +39,8 @@ namespace Program
         }
             
 
-            static void MainMenu(PlayerCharacter player)
-            {
+         static void MainMenu(PlayerCharacter player)
+         {
                 Dictionary<string, Action<PlayerCharacter>> options = new Dictionary<string, Action<PlayerCharacter>> //Creates a new dictionary, where when the key is called by the user, it calls the method that it is connected to in the dictionary. I thought this was a cool use of the dictionary :)
                 {
                 { "shop", Shop },
@@ -68,7 +68,7 @@ namespace Program
                         Console.WriteLine("Invalid choice.");
                     }
                 }
-            }
+         }   
         
         static void Shop(PlayerCharacter player)
         {
@@ -305,18 +305,7 @@ namespace Program
 
             TimeSpan timeTaken = endTime - startTime;
 
-            if (timeTaken.TotalSeconds <= 10)
-            {
-                if (userInput == sentenceToType)
-                {
-                    Console.WriteLine($"Great job! You typed the sentence correctly in {timeTaken.TotalSeconds:F2} seconds. You have caught the criminal!");
-                }
-                else
-                {
-                    Console.WriteLine($"Oops! You didn't type the sentence correctly, and the criminal escaped. Try again!");
-                }
-            }
-            else if (player.Gear.Contains(LazerGun()) && userInput <= 15)
+            if (player.Gear.Contains(LazerGun()) && userInput <= 15)
             {//if they have tools, it changes. 
                 if (userInput == sentenceToType)
                 {
@@ -327,7 +316,7 @@ namespace Program
                     Console.WriteLine($"Oops! You didn't type the sentence correctly, and the criminal escaped. Try again!");
                 }
             }
-            else if (player.Gear.Contains(CrowBar()) && userInput <= 20)
+            if (player.Gear.Contains(CrowBar()) && userInput <= 20)
             {
                 if (userInput == sentenceToType)
                 {
@@ -338,7 +327,7 @@ namespace Program
                     Console.WriteLine($"Oops! You didn't type the sentence correctly, and the criminal escaped. Try again!");
                 }
             }
-            else if (player.Gear.Contains(LazerRiffle()) && userInput <= 25)
+            if (player.Gear.Contains(LazerRiffle()) && userInput <= 25)
             {
                 if (userInput == sentenceToType)
                 {
@@ -349,7 +338,7 @@ namespace Program
                     Console.WriteLine($"Oops! You didn't type the sentence correctly, and the criminal escaped. Try again!");
                 }
             }
-            else if (player.Gear.Contains(ElectricDagger()) && userInput <= 35)
+            if (player.Gear.Contains(ElectricDagger()) && userInput <= 35)
             {
                 if (userInput == sentenceToType)
                 {
@@ -360,7 +349,7 @@ namespace Program
                     Console.WriteLine($"Oops! You didn't type the sentence correctly, and the criminal escaped. Try again!");
                 }
             }
-            else if (player.Gear.Contains(Club()) && userInput <= 40)
+            if (player.Gear.Contains(Club()) && userInput <= 40)
             {
                 if (userInput == sentenceToType)
                 {
@@ -371,9 +360,31 @@ namespace Program
                     Console.WriteLine($"Oops! You didn't type the sentence correctly, and the criminal escaped. Try again!");
                 }
             }
-            else if (player.Gear.Contains(SaberOfLight())
+            if (player.Gear.Contains(SaberOfLight())
             {
                 Console.WriteLine("The criminal shit themselves out of fear, and you caught them! Good work!");
+            }
+            if (player.Helpers.Contains(WorkerRole.Intern) && userInput <= 60) 
+            {
+                if (userInput == sentenceToType)
+                {
+                    Console.WriteLine($"Great job! You typed the sentence correctly in {timeTaken.TotalSeconds:F2} seconds. You have caught the criminal!");
+                }
+                else
+                {
+                    Console.WriteLine($"Oops! You didn't type the sentence correctly, and the criminal escaped. Try again!");
+                }
+            }
+            if (timeTaken.TotalSeconds <= 10)
+            {
+                if (userInput == sentenceToType)
+                {
+                    Console.WriteLine($"Great job! You typed the sentence correctly in {timeTaken.TotalSeconds:F2} seconds. You have caught the criminal!");
+                }
+                else
+                {
+                    Console.WriteLine($"Oops! You didn't type the sentence correctly, and the criminal escaped. Try again!");
+                }
             }
             else
             {
@@ -408,13 +419,15 @@ namespace Program
 
                 if (helper.Role == WorkerRole.Soldier)
                 {
-                    await helper.CompleteMissionAsync(helper, "Going off to catch a criminal in your name, and they will give you 60% of the reward.", 12)
-
+                    player.Helpers.Add(helper)
+                    await helper.CompleteMissionAsync(helper, "Going off to catch a criminal in your name, and they will give you 60% of the reward.", 12);
+                    
                     Console.WriteLine($"They have succeeded! {helper.Name} gives you 300 credits.");
                     player.Credits += 300;
                 }
                 if (helper.Role == WorkerRole.Cook)
                 {
+                    player.Helpers.Add(helper);
                     await helper.CompleteMissionAsync(helper, "Cooking food for you and any others you have on your ship.", 5);
 
                     Console.WriteLine($"They have succeeded, and the ship smells like fresh cooked food! {helper.Name} has done a great job.");
@@ -422,11 +435,13 @@ namespace Program
                 }
                 if (helper.Role == WorkerRole.Intern)
                 {
+                    player.Helpers.Add(helper)
                     Console.WriteLine("The intern plops down into a chair on your ship, waiting to head out to catch one of those bastardly criminals!");
 
                 }
                 if (helper.Role == WorkerRole.Engineer)
                 {
+                    player.Helpers.Add(helper);
                     await helper.CompleteMissionAsync(helper, "Fixing up your ship, upgrading it so it will never need that silly fuel ever again!", 30);
 
                     Console.WriteLine($"After quite some time, the tired but accomplished {helper.Name} reports that your ship is ready to go!");

@@ -23,6 +23,7 @@ namespace Final_Project__Space_Guy
         public List<Stuff> Gear { get; set; }
         public Ship PlayerShip { get; set; }
         public List<Criminal> CapturedCriminals { get; set; }
+        public List<Helpers> Helpers { get; set; }
         public int Hunger { get; set; }
         private DateTime LastUpdate { get; set; }
 
@@ -35,6 +36,7 @@ namespace Final_Project__Space_Guy
             Gear = new List<Stuff>();
             PlayerShip = new Ship("Starter Ship");
             CapturedCriminals = new List<Criminal>();
+            Helpers = new List<Helpers>();
             Hunger = 100;
             LastUpdate = DateTime.Now;
         }
