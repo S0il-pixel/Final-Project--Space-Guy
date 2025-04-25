@@ -307,7 +307,7 @@ public class PlanetAttribute : Attribute
 [Planet("Rocky", 1, "Rare Minerals")]
 public class TerraPrime
 {
-    public string Name => "Terra Prime";
+    public string Name => "Gerinnan";
     public string Description => "A rocky planet rich in rare minerals and suitable for exploration.";
 }
 
@@ -318,31 +318,31 @@ public class Arachon
     public string Description => "A harsh desert planet where alien fossils can be discovered.";
 }
 
-[Planet("Forest", 3, "Mystic Plants")]
+[Planet("Forest", 3, "Medical Plants")]
 public class Sylva
 {
-    public string Name => "Sylva";
+    public string Name => "Lyrx";
     public string Description => "A dense forest planet teeming with mystic plants and hidden dangers.";
 }
 
-[Planet("Frozen", 2, "Crystal Ice")]
+[Planet("Frozen", 2, "Large Crystal Ice")]
 public class Cryon
 {
-    public string Name => "Cryon";
+    public string Name => "Cierian";
     public string Description => "A frozen wasteland hiding crystalline ice under its glaciers.";
 }
 
 [Planet("Volcanic", 4, "Lava Stones")]
 public class Pyronis
 {
-    public string Name => "Pyronis";
+    public string Name => "Statillunis";
     public string Description => "A volatile volcanic planet where lava stones can be harvested.";
 }
 
 public static void DisplayPlanets()
 {
-    var planetTypes = Assembly.GetExecutingAssembly().GetTypes()
-        .Where(t => t.GetCustomAttributes<PlanetAttribute>().Any());
+    var planetTypes = Assembly.GetExecutingAssembly().GetTypes() //Why is this brokennn
+        .Where(t => t.GetCustomAttributes<PlanetAttribute>().Any()); //uuuuugh
 
     foreach (var type in planetTypes)
     {

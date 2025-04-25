@@ -441,7 +441,7 @@ namespace Program
 
         public void PlanetExploration(PlayerCharacter player)
         {
-            Console.WriteLine("Exploring different planets depleats your fuel and food, but will take you to unique places with interesting things to do!");
+            Console.WriteLine("Here are some of the planets in your current galaxy:");
             DisplayPlanets();
 
         }
