@@ -444,10 +444,10 @@ namespace Program
             player.UpdateHungerAndFuel();
             List<Helpers> availableHelpers = new List<Helpers>
                         {
-                            new Helpers("Shane","Will go off and collect criminals. Will give you 60% of the credits they earn.", Soldier, 3000),
-                            new Helpers("Amanda", "Will make you food, so that you don't go hungry while out in space.", Cook, 5000),
-                            new Helpers("Angela", "Will help you catch criminals, expanding the time limit for the mini game.", Intern, 6000),
-                            new Helpers("Keith", "Will add solar and nuclear power to your ship, so you don't need fuel anymore.", Engineer, 8000)
+                            new Helpers("Shane","Will go off and collect criminals. Will give you 60% of the credits they earn.", WorkerRole.Soldier, 3000),
+                            new Helpers("Amanda", "Will make you food, so that you don't go hungry while out in space.", WorkerRole.Cook, 5000),
+                            new Helpers("Angela", "Will help you catch criminals, expanding the time limit for the mini game.", WorkerRole.Intern, 6000),
+                            new Helpers("Keith", "Will add solar and nuclear power to your ship, so you don't need fuel anymore.", WorkerRole.Engineer, 8000)
                         };
             Console.WriteLine("To hire a person, please type the number beside their name.");
             for (int i = 0; i < availableHelpers.Count; i++)
@@ -511,8 +511,4 @@ namespace Program
 
     }
 
-}
-
-
-}
 }
