@@ -151,10 +151,23 @@ namespace Program
                             new Criminal("Mafie guy: Al Capone!", 2000, 3)
                         };
                         Console.WriteLine("Wanted Board: Choose a criminal to hunt, by typing the criminals number on the left side of their name.");
-            for (int i = 0; i < availableCriminals.Count; i++)
-            {
-                Console.WriteLine($"{i + 1}. {availableCriminals[i].Name} - Bounty: {availableCriminals[i].Bounty} credits"); //looks at list, and shows to player
-            }
+
+            availableCriminals.ForEach(c => Console.WriteLine($"Name: {Criminal.Name}, Bounty: {Criminal.Bounty}, Difficulty: {Criminal.Difficulty}"));
+
+            Console.WriteLine("Choose the difficulty you want to hunt. 1, 2, 3 :");
+            string difficultyLevel = Console.ReadLine();
+            int difficulty = int.Parse(difficultyLevel)
+
+            var filteredCriminals = criminals.Where(Criminals => Criminals.Difficulty == difficulty).ToList();
+
+            Console.WriteLine($"Criminals with difficulty {Criminal.Difficulty}:");
+            filteredCriminals.ForEach(c => Console.WriteLine($"Name: {c.Name}, Bounty: {c.Bounty}, Difficulty: {c.Difficulty}"));
+
+            //I slipped the LINQ in there XD
+            //for (int i = 0; i < availableCriminals.Count; i++)
+            //{
+            //    Console.WriteLine($"{i + 1}. {availableCriminals[i].Name} - Bounty: {availableCriminals[i].Bounty} credits"); //looks at list, and shows to player
+            //}
 
             Console.Write("Enter the number of the criminal you want to hunt: ");
             int choice = int.Parse(Console.ReadLine()); //Need to convert to correct formatting.
