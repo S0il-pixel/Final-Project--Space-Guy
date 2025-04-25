@@ -234,18 +234,21 @@ namespace Program
                     {
                         //mini game 1
                         Game("The criminal runs, and jumps over a barel.")
+                            
                         break;
                     }
                 case 2:
                     {
                         //mini game 2
                         Game("The criminal tries to shoot you!")
+                           
                         break;
                     }
                 case 3:
                     {
                         //mini game 3
                         Game("You find your target, and throw a rock.")
+                            
                         break;
                     }
             }
@@ -260,18 +263,21 @@ namespace Program
                     {
                         //mini game 1
                         Game("The criminal has attacked you, you dodge but the criminal persists!");
+                            
                         break;
                     }
                 case 2:
                     {
                         //mini game 2
                         Game("Where did he go? Lookout! Your target is behind you!");
+                            
                         break;
                     }
                 case 3:
                     {
                         //mini game 3
                         Game("The criminal was sleeping when you found them, but is it safe?");
+
                         break;
                     }
             }
@@ -286,18 +292,21 @@ namespace Program
                     {
                         //mini game 1
                         Game("The criminal attacks your ship with their band of criminals, you have to fight them off, quickly!");
+
                         break;
                     }
                 case 2:
                     {
                         //mini game 2
                         Game("They have a secret base, that is very hard to find. And when you find it, they wer waiting for you! It's a trap!");
+
                         break;
                     }
                 case 3:
                     {
                         //mini game 3
                         Game("You shoot at the criminal with your blaster, but they dodge with skill. How will you ever catch the evil doer?");
+
                         break;
                     }
             }
@@ -320,10 +329,14 @@ namespace Program
                 if (userInput == sentenceToType)
                 {
                     Console.WriteLine($"Great job! You typed the sentence correctly in {timeTaken.TotalSeconds:F2} seconds. You have caught the criminal!");
+                    Console.WriteLine("You chase the criminal as they wind through the alleyways, over barels and rubble, and up a ladder. You follow suit, snapping at their heals. You persue them over the roof tops, " +
+                                "leaping over gaps as they desperately attempt to escape you. But, as they glance back to check how close they are, they don't notice the clothes line. They run right into it, getting snagged " +
+                                "and wrapped up in sheets! They hit the ground, the air being knocked out of them, trapped in the household item. You laugh, taking advantage of the moment to cuff them. The criminal groans, " +
+                                "knowing they've met their match. You take them back to your ship with a triumphant grin. You didn't even need to use your blaster, after all.");
                 }
                 else
                 {
-                    Console.WriteLine($"Oops! You didn't type the sentence correctly, and the criminal escaped. Try again!");
+                    Console.WriteLine($"Oops! You didn't type the sentence correctly, and the criminal escaped. The criminal managed to outrun you, leaving you in their dust. Try again!");
                 }
             }
             if (player.Gear.Contains(CrowBar()) && userInput <= 20)
@@ -331,10 +344,14 @@ namespace Program
                 if (userInput == sentenceToType)
                 {
                     Console.WriteLine($"Great job! You typed the sentence correctly in {timeTaken.TotalSeconds:F2} seconds. You have caught the criminal!"); //F2 means a float point number. So it has two decimal places only.
+                    Console.WriteLine("The criminal, armed with a lzer blaster, attempts to shoot you. You duck behind a crumbling cement wall, dust flying past you as lazers just barely miss you. You scowl, flinching " +
+                               "as another blast skids off the side of the rubble. You glance around, in doing so you spot a rock. With your own blaster being broken, it may be your best bet. You grab the rock, clutching it in " +
+                               "your gloved fists. You wait for your moment to strike, and you find it when an ugly rat runs out. The criminal shoots at the movement, making the rat squeak and run around. You take your chance, " +
+                               " standing and throwing the rock. You hear a faint 'ouch!', then a thud. You got them! You walk over, crowbar in hand. You really thought it would be more useful, but hey, it worked out.");
                 }
                 else
                 {
-                    Console.WriteLine($"Oops! You didn't type the sentence correctly, and the criminal escaped. Try again!");
+                    Console.WriteLine($"Oops! You didn't type the sentence correctly, and the criminal escaped. The criminal hit you in the head with the butt of their blaster, knocking you unconcious. Try again!");
                 }
             }
             if (player.Gear.Contains(LazerRiffle()) && userInput <= 25)
@@ -342,10 +359,12 @@ namespace Program
                 if (userInput == sentenceToType)
                 {
                     Console.WriteLine($"Great job! You typed the sentence correctly in {timeTaken.TotalSeconds:F2} seconds. You have caught the criminal!");
+                    Console.WriteLine("The criminal wakes up with a splutter, kicking their feet and adjusting their hat. You laugh, scratching your head. The criminal looks up at you, a look of shock on their face. " +
+                                "They have quickly realized, they've been caught. With a sigh, they offer up their wrists, and you cuff them. Sometimes, this feels like a pretty easy job. No riffle needed, hah!");
                 }
                 else
                 {
-                    Console.WriteLine($"Oops! You didn't type the sentence correctly, and the criminal escaped. Try again!");
+                    Console.WriteLine($"Oops! You didn't type the sentence correctly, and the criminal escaped. The criminal distracted you with a smoke bomb, escaping through a back alley. Try again!");
                 }
             }
             if (player.Gear.Contains(ElectricDagger()) && userInput <= 35)
@@ -353,10 +372,15 @@ namespace Program
                 if (userInput == sentenceToType)
                 {
                     Console.WriteLine($"Great job! You typed the sentence correctly in {timeTaken.TotalSeconds:F2} seconds. You have caught the criminal!");
+                    Console.WriteLine("The criminal was waiting for you, a mask over their face, and a savage looking dagger grasped in their fist. A look in their tells you that they have a thirst for blood, specifically " +
+                                "your blood. With a gasp you again duck to the side, avoiding a violent slash aimed at your torso. You slash at them with your own dagger, which sparks with angry energy. " +
+                                "The criminal whips around, knicking your arm with the savage blade. Beads of blood well up " +
+                                "out of the gash, staining your clothes. The criminal laughs like a wild animal, attacking again. But you're ready this time, whipping asside, grabbing their arm as you do. Twisting it, the criminal " +
+                                "yelps. The dagger forced out of their grasp, their arm straining. You force them to their knees, struggling to cuff them as they fight against you every step of the way.");
                 }
                 else
                 {
-                    Console.WriteLine($"Oops! You didn't type the sentence correctly, and the criminal escaped. Try again!");
+                    Console.WriteLine($"Oops! You didn't type the sentence correctly, and the criminal escaped. They managed to stab you, and you had to retreat to fix yourself up. Try again!");
                 }
             }
             if (player.Gear.Contains(Club()) && userInput <= 40)
@@ -364,10 +388,15 @@ namespace Program
                 if (userInput == sentenceToType)
                 {
                     Console.WriteLine($"Great job! You typed the sentence correctly in {timeTaken.TotalSeconds:F2} seconds. You have caught the criminal!");
+                    Console.WriteLine("You let in a sharp inhale as you feel the cold muzzle of a blaster pressed against your back. The criminal, in a gruff voice, orders you to raise your hands. You slowly do as ordered, " +
+                                "taking slow deep breaths as you feel the hands of the criminal snatching anything valuable off of you as they can, including your club. You glance back, your eyes flicking over their features. Their hand on the blaster " +
+                                "is steady, but their eyes are distracted. Just the opportunity you needed. You grab the blaster, and twist it around. The criminal yelps in surprise, their finger pulling the trigger. Luckily for the " +
+                                "both of you, the lazer shoots into a wall. You both wrestle for the blaster, and you end up the winner. Out of breath, you point the blaster at the criminal. Turning the tides. They growl, but slowly " +
+                                "raise their hands. You have won!");
                 }
                 else
                 {
-                    Console.WriteLine($"Oops! You didn't type the sentence correctly, and the criminal escaped. Try again!");
+                    Console.WriteLine($"Oops! You didn't type the sentence correctly, and the criminal escaped. They shot you in the leg, leaving you unable to take chase. Try again!");
                 }
             }
             if (player.Gear.Contains(SaberOfLight())
@@ -379,10 +408,15 @@ namespace Program
                 if (userInput == sentenceToType)
                 {
                     Console.WriteLine($"Great job! You typed the sentence correctly in {timeTaken.TotalSeconds:F2} seconds. You have caught the criminal!");
+                    Console.WriteLine("You and your intern sneak into the loud building, blinding lights dancing, and people jumping on the dance floor. You signal for your intern to go right, as you go left. They nod, " +
+                        "pulling up they hood as the two of you split up. As you walk around the room, your eyes scan the chaotic dance floor for your target. You hear a faint, high pitched whistle. Your intern has found " +
+                        "them! You slink quickly toward the sound, where you find your intern in a tustle with two body guards! Your eyes narrow, recognizing they will be able to handle the goons. You need to find the " +
+                        "criminal you two came for. You spot them, trying to sneak out a back door. You follow quickly, grabbing them. They gasp, but you quickly place them in cuffs. Your intern joins you soon after, a successful " +
+                        "grin on their bruised and swollen face. You chuckle, and tell them good job as your target grumbles angrily.");
                 }
                 else
                 {
-                    Console.WriteLine($"Oops! You didn't type the sentence correctly, and the criminal escaped. Try again!");
+                    Console.WriteLine($"Oops! You didn't type the sentence correctly, and the criminal escaped. Injuring your intern, and leaving you tied up to a chair. Try again!");
                 }
             }
             if (timeTaken.TotalSeconds <= 10)
@@ -390,10 +424,13 @@ namespace Program
                 if (userInput == sentenceToType)
                 {
                     Console.WriteLine($"Great job! You typed the sentence correctly in {timeTaken.TotalSeconds:F2} seconds. You have caught the criminal!");
+                    Console.WriteLine("You charge into the base, knowimg you need to get this done quickly. You are quickly confronted with your stunned target, who seemed to have been expecting someone. Having just your fists, " +
+                        "you tackle them without a second thought. The criminal yelps, shocked by your sudden attack. The two of you wrestle, struggling against the other. Thanks to your hard work in the gym, you win the fight! " +
+                        "the criminal shouts and struggles, but you are able to get them restrained. With triumph, you drag them back to your ship. Ready to get the credits you are owed!");
                 }
                 else
                 {
-                    Console.WriteLine($"Oops! You didn't type the sentence correctly, and the criminal escaped. Try again!");
+                    Console.WriteLine($"Oops! You didn't type the sentence correctly, and the criminal escaped. Punching you in the chin, and knocking you out. Try again!");
                 }
             }
             else
