@@ -10,7 +10,7 @@ namespace Final_Project__Space_Guy
     {
         public static void Main(string[] args)
         {
-            try
+            try //Error handling
             {
                 DateTime startT = DateTime.Now;
                 Console.WriteLine("Welcome to the Space Bounty Hunter RPG game! You are at the main menu. To select an option, type in the letter in the brackets() beside the option.");
