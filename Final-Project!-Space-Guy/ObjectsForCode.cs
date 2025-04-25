@@ -12,7 +12,7 @@ using Newtonsoft.Json;
 
 namespace Final_Project__Space_Guy 
 {
-    public class PlayerCharacter : 
+    public class PlayerCharacter //OOP
     {
         public string Name { get; set; }
         public string Description { get; set; }
@@ -55,7 +55,7 @@ namespace Final_Project__Space_Guy
             PlayerShip.Fuel = Math.Max(PlayerShip.Fuel, 0);
         }
 
-        public void SaveGame()
+        public void SaveGame() //Use of Json files
         {
             string json = JsonConvert.SerializeObject(this, Formatting.Indented); //Creating the save Json file, serializing the object Player
             File.WriteAllText($"{Name}.json", json);
@@ -67,7 +67,7 @@ namespace Final_Project__Space_Guy
             if (File.Exists($"{name}.json"))
             {
                 // ~ or .../Final-Project!-Space-Guy/Final-Project!-Space-Guy/Final-Project!-Space-Guy.csproj/jsonfile.
-                string json = File.ReadAllText($"{name}.json");
+                string json = File.ReadAllText($".../{name}.json");
                 return JsonConvert.DeserializeObject<PlayerCharacter>(json); //If the save is found, the Json file is deserialized (the object is created again that was saved), and is then able to be used again.
             }
             Console.WriteLine("No saved game found."); //If no save is found, this is what is returned, and the player must create a new save. 
@@ -77,7 +77,7 @@ namespace Final_Project__Space_Guy
 
     public class Stuff
     {
-        public abstract class Tools
+        public abstract class Tools //Inheritence/Polymophism
         {
             public string Name { get; set; }
             public string Description { get; set; }

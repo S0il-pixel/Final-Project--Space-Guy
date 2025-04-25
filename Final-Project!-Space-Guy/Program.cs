@@ -73,7 +73,7 @@ namespace Program
         static void Shop(PlayerCharacter player)
         {
             player.UpdateHungerAndFuel();
-            Dictionary<string, int> shopItems = new Dictionary<string, int>
+            Dictionary<string, int> shopItems = new Dictionary<string, int> //Another use of dictionary
                         {
                             { "fuel refill", 50 },
                             { "food refill", 30 },
