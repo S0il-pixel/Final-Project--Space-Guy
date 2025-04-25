@@ -4,8 +4,6 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
-
-using System;
 using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
@@ -185,22 +183,3 @@ namespace Final_Project__Space_Guy
         }
     }
 }
-
-
-public class Ship
-    {
-        public string Name { get; set; }
-        public int Capacity { get; set; }
-        public int Fuel { get; set; }
-        public List<string> Upgrades { get; set; }
-
-        public Ship(string name)
-        {
-            Name = name;
-            Capacity = 5; // Start with space for 5 criminals (This can be changed) I need to change this. Cause rn it doesn't do anything. 
-            Fuel = 100; //Start with full fuel (This can be expanded) I need to change this so that you can't get more fuel than you have space for.
-            Upgrades = new List<string>();
-        }
-    }
-
-    
