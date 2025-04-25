@@ -178,7 +178,7 @@ namespace Program
             Console.Write("Enter the name of the criminal you want to hunt: ");
             string choice = Console.ReadLine(); 
 
-            if (choice == availableCriminals)
+            if (choice == availableCriminals[Criminal.Name])
             {
                 Criminal target = availableCriminals[choice - 1];
                 Console.WriteLine($"You are now hunting {target.Name}.");
