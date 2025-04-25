@@ -203,18 +203,52 @@ public class Ship
 
     public class Criminal
     {
-        public string Name { get; set; }
-        public int Bounty { get; set; }
-        public int Difficulty { get; set; }
+        private string name;
+        private int bounty;
+        private int difficulty;
 
         public Criminal(string name, int bounty, int difficulty)
         {
-            Name = name;
+            Name = name; 
             Bounty = bounty;
             Difficulty = difficulty;
         }
+
+        public string Name
+        {
+            get { return name; }
+            private set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                    throw new ArgumentException("Name cannot be null or empty.");
+                name = value;
+            }
+        }
+
+        public int Bounty
+        {
+            get { return bounty; }
+            set
+            {
+                if (value <= 0)
+                    throw new ArgumentException("Bounty must be greater than zero.");
+                bounty = value;
+            }
+        }
+
+        public int Difficulty
+        {
+            get { return difficulty; }
+            set
+            {
+                if (value < 1 || value > 3)
+                    throw new ArgumentException("Difficulty must be between 1 and 3.");
+                difficulty = value;
+            }
+        }
+
     }
-}
+
 
  public enum WorkerRole
 {
