@@ -149,8 +149,20 @@ namespace Program
                             new Criminal("Vael the Shadow Walker", 800, 2),
                             new Criminal("Zorak Bloodfang", 1200, 3),
                             new Criminal("Mafie guy: Al Capone!", 2000, 3)
+                            new Criminal("Carmen the Swift", 700, 1),
+                            new Criminal("Lynx Dark", 900, 2),
+                            new Criminal("Grimgor the Crusher", 1500, 3),
+                            new Criminal("Scarlet Dagger", 400, 1),
+                            new Criminal("Ragnar Ironclad", 1000, 2),
+                            new Criminal("Morgath Firebrand", 1800, 3),
+                            new Criminal("Silas Blackhand", 600, 1),
+                            new Criminal("Thorne the Silent", 750, 2),
+                            new Criminal("Xara Venomstrike", 1100, 3),
+                            new Criminal("Erebus the Phantom", 900, 2),
+                            new Criminal("Brutus Bloodfang", 1400, 3)
                         };
-                        Console.WriteLine("Wanted Board: Choose a criminal to hunt, by typing the criminals number on the left side of their name.");
+
+            Console.WriteLine("Wanted Board: ");
 
             availableCriminals.ForEach(c => Console.WriteLine($"Name: {Criminal.Name}, Bounty: {Criminal.Bounty}, Difficulty: {Criminal.Difficulty}"));
 
@@ -162,17 +174,11 @@ namespace Program
 
             Console.WriteLine($"Criminals with difficulty {Criminal.Difficulty}:");
             filteredCriminals.ForEach(c => Console.WriteLine($"Name: {Criminal.Name}, Bounty: {Criminal.Bounty}, Difficulty: {Criminal.Difficulty}"));
-            //I slipped the LINQ in there XD
 
-            //for (int i = 0; i < availableCriminals.Count; i++)
-            //{
-            //    Console.WriteLine($"{i + 1}. {availableCriminals[i].Name} - Bounty: {availableCriminals[i].Bounty} credits"); //looks at list, and shows to player
-            //}
+            Console.Write("Enter the name of the criminal you want to hunt: ");
+            string choice = Console.ReadLine(); 
 
-            Console.Write("Enter the number of the criminal you want to hunt: ");
-            int choice = int.Parse(Console.ReadLine()); //Need to convert to correct formatting.
-
-            if (choice > 0 && choice <= availableCriminals.Count)
+            if (choice == availableCriminals)
             {
                 Criminal target = availableCriminals[choice - 1];
                 Console.WriteLine($"You are now hunting {target.Name}.");
