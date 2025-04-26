@@ -4,7 +4,6 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
 using Final_Project__Space_Guy;
@@ -87,19 +86,19 @@ namespace Program
                         {
                             { "fuel refill", 50 },
                             { "food refill", 30 },
-                            { "weapon upgrade", 200 }
-                            { "Lazer Gun", 30 }
-                            { "Crowbar", 50 }
-                            { "Lazer Riffle", 500 }
-                            { "Electric Charged Dagger", 20 }
-                            { "Saber of Light", 5200 }
-                            { "Club", 40 }
+                            { "lazer gun", new LazerGun() },
+                            { "crowbar", new Crowbar() },
+                            { "lazer riffle", new LazerRiffle() },
+                            { "electric dagger", new ElectricDagger() },
+                            { "saber of light", new SaberOfLight() },
+                            { "club", new Club() }
                         };
 
             Console.WriteLine("Welcome to the shop! Items available:");
             foreach (var item in shopItems)
             {
                 Console.WriteLine($"{item.Key}: {item.Value} credits");
+                Console.WriteLine($"{item.Value.Name}: {item.Value.Cost} credits - {item.Value.Description}");
             }
 
             Console.Write("What would you like to buy? ");
@@ -108,15 +107,46 @@ namespace Program
             if (shopItems.ContainsKey(itemChoice) && player.Credits >= shopItems[itemChoice])
             {
                 player.Credits -= shopItems[itemChoice];
-                if (itemChoice == "fuel") player.PlayerShip.Fuel = player.PlayerShip.Fuel; //I need to make sure this actually costs something, and also the amount doesn't exceed how much the player can contain. 
-                if (itemChoice == "food") player.Hunger = player.Hunger;
-                if (itemChoice == "Lazer Gun") player.Gear.Add(LazerGun());
-                if (itemChoice) == "Crowbar") player.Gear.Add(Crowbar());
-                if (itemChoice) == "Lazer Riffle") player.Gear.Add(LazerRiffle());
-                if (itemChoice) == "Electric Charged Dagger") player.Gear.Add(ElectricDagger());
-                if (itemChoice) == "Saber of Light") player.Gear.Add(SaberOfLight());
-                if (itemChoice) == "Club") player.Gear.Add(Club());
-                Console.WriteLine($"{itemChoice} purchased! Remaining credits: {player.Credits}");  //I'm going to make this larger, such as adding tools they can buy, and instead of weapon upgrades it's weapons that make the minigames easier.
+                if (itemChoice == "fuel refill")
+                {
+                    int refillAmount = 50; // Fuel refill amount
+                    int availableSpace = 100 - player.PlayerShip.Fuel; // Max fuel capacity is 100
+                    int refillableAmount = Math.Min(refillAmount, availableSpace); // Prevent overfilling
+
+                    player.PlayerShip.Fuel += refillableAmount;
+                    player.Credits -= shopItems[itemChoice];
+                    Console.WriteLine($"Fuel refilled! Remaining credits: {player.Credits}. Current Fuel: {player.PlayerShip.Fuel}/100");
+                }
+                else if (itemChoice == "food refill")
+                {
+                    int refillAmount = 30; // Food refill amount
+                    int availableSpace = 100 - player.Hunger; // Max hunger capacity is 100
+                    int refillableAmount = Math.Min(refillAmount, availableSpace); // Prevent overfilling
+
+                    player.Hunger += refillableAmount;
+                    player.Credits -= shopItems[itemChoice];
+                    Console.WriteLine($"Food refilled! Remaining credits: {player.Credits}. Current Hunger: {player.Hunger}/100");
+                }
+                Tools selectedTool = shopItems[itemChoice];
+                if (player.Credits >= selectedTool.Cost)
+                {
+                    player.Credits -= selectedTool.Cost;
+                    player.Gear.Add(selectedTool); // Add tool to player's gear
+                    Console.WriteLine($"{selectedTool.Name} purchased! Remaining credits: {player.Credits}");
+                }
+                else
+                {
+                    Console.WriteLine("Not enough credits to buy this item.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid choice.");
+            }
+        }
+
+
+        Console.WriteLine($"{itemChoice} purchased! Remaining credits: {player.Credits}");  //I'm going to make this larger, such as adding tools they can buy, and instead of weapon upgrades it's weapons that make the minigames easier.
             }
             else
             {
@@ -160,7 +190,7 @@ namespace Program
                             new Criminal("Jimmy the Throat Slitter!", 500, 1),
                             new Criminal("Vael the Shadow Walker", 800, 2),
                             new Criminal("Zorak Bloodfang", 1200, 3),
-                            new Criminal("Mafie guy: Al Capone!", 2000, 3)
+                            new Criminal("Mafie guy: Al Capone!", 2000, 3),
                             new Criminal("Carmen the Swift", 700, 1),
                             new Criminal("Lynx Dark", 900, 2),
                             new Criminal("Grimgor the Crusher", 1500, 3),
@@ -171,7 +201,7 @@ namespace Program
                             new Criminal("Thorne the Silent", 750, 2),
                             new Criminal("Xara Venomstrike", 1100, 3),
                             new Criminal("Erebus the Phantom", 900, 2),
-                            new Criminal("Brutus Bloodfang", 1400, 3)
+                            new Criminal("Brutus Bloodfang", 1400, 3),
                         };
 
             Console.WriteLine("Wanted Board: ");
@@ -180,7 +210,7 @@ namespace Program
 
             Console.WriteLine("Choose the difficulty you want to hunt. 1, 2, 3 :");
             string difficultyLevel = Console.ReadLine();
-            int difficulty = int.Parse(difficultyLevel)
+            int difficulty = int.Parse(difficultyLevel);
 
             var filteredCriminals = criminals.Where(Criminals => Criminals.Difficulty == difficulty).ToList();
 
@@ -190,6 +220,7 @@ namespace Program
             Console.Write("Enter the name of the criminal you want to hunt: ");
             string choice = Console.ReadLine();
 
+            var target = availableCriminals.FirstOrDefault(c => c.Name.Equals(choice, StringComparison.OrdinalIgnoreCase));
             if (choice == availableCriminals[Criminal.Name])
             {
                 Criminal target = availableCriminals[choice - 1];
@@ -312,7 +343,132 @@ namespace Program
             }
         }
 
-        public static void Game(PlayerCharacter player, string sentence)
+        public void Game(PlayerCharacter player, Criminal target, string sentenceToType, int baseTimeLimit)
+        {
+            if (player.Gear.Any(g => g.Name == "Saber of Light"))
+            {
+                // Automatically win the fight
+                Console.WriteLine("You ignite the Saber of Light, its radiant blade illuminating the area.");
+                Console.WriteLine($"The moment {target.Name} sees it, they drop their weapon, frozen in fear.");
+                Console.WriteLine("Without hesitation, they surrender, and you cuff them with ease.");
+                Console.WriteLine($"You have caught {target.Name}! You earn {target.Bounty} credits.");
+
+                // Add the criminal to the player's captured list and increase credits
+                player.CapturedCriminals.Add(target);
+                player.Credits += target.Bounty;
+                return; // Exit the method since the fight is resolved
+            }
+
+            Console.WriteLine($"Your target is {target.Name}, with a bounty of {target.Bounty} credits and a difficulty level of {target.Difficulty}.");
+            Console.WriteLine("Your sentence to type is:");
+            Console.WriteLine(sentenceToType);
+            Console.WriteLine("Ready? Go!");
+
+            DateTime startTime = DateTime.Now;
+            string userInput = Console.ReadLine();
+            DateTime endTime = DateTime.Now;
+
+            TimeSpan timeTaken = endTime - startTime;
+            int totalTimeLimit = baseTimeLimit;
+
+            // Apply tools
+            foreach (var tool in player.Gear)
+            {
+                if (tool.UseTool()) // Decrease tool uses
+                {
+                    totalTimeLimit += GetToolTimeBonus(tool); // Add time bonus
+                    Console.WriteLine($"{tool.Name} used! Time limit increased by {GetToolTimeBonus(tool)} seconds. Remaining uses: {tool.UsesLeft}");
+                }
+            }
+
+            // Determine fight outcome
+            bool isSuccessful = (timeTaken.TotalSeconds <= totalTimeLimit && userInput == sentenceToType);
+
+            if (isSuccessful)
+            {
+                Console.WriteLine($"Great job! You typed the sentence correctly in {timeTaken.TotalSeconds:F2} seconds. You have caught the criminal!");
+                DisplaySuccessStory(player, target); // Call success story method
+            }
+            else
+            {
+                Console.WriteLine($"Oops! You didn't type the sentence correctly, or you ran out of time. The criminal escaped.");
+                DisplayFailureStory(player, target); // Call failure story method
+            }
+        }
+
+        private void DisplaySuccessStory(PlayerCharacter player, Criminal target)
+        {
+            if (player.Gear.Any(g => g.Name == "Lazer Gun"))
+            {
+                Console.WriteLine("You chase the criminal as they wind through the alleyways, over barels and rubble, and up a ladder. You follow suit, snapping at their heals. You persue them over the roof tops, " +
+                                "leaping over gaps as they desperately attempt to escape you. But, as they glance back to check how close they are, they don't notice the clothes line. They run right into it, getting snagged " +
+                                "and wrapped up in sheets! They hit the ground, the air being knocked out of them, trapped in the household item. You laugh, taking advantage of the moment to cuff them. The criminal groans, " +
+                                "knowing they've met their match. You take them back to your ship with a triumphant grin. You didn't even need to use your blaster, after all.");
+            }
+            else if (player.Gear.Any(g => g.Name == "Crowbar"))
+            {
+                Console.WriteLine("The criminal, armed with a lzer blaster, attempts to shoot you. You duck behind a crumbling cement wall, dust flying past you as lazers just barely miss you. You scowl, flinching " +
+                               "as another blast skids off the side of the rubble. You glance around, in doing so you spot a rock. With your own blaster being broken, it may be your best bet. You grab the rock, clutching it in " +
+                               "your gloved fists. You wait for your moment to strike, and you find it when an ugly rat runs out. The criminal shoots at the movement, making the rat squeak and run around. You take your chance, " +
+                               " standing and throwing the rock. You hear a faint 'ouch!', then a thud. You got them! You walk over, crowbar in hand. You really thought it would be more useful, but hey, it worked out.");
+            }
+            else if (player.Gear.Any(g => g.Name == "Lazer Riffle"))
+            {
+                Console.WriteLine("The criminal wakes up with a splutter, kicking their feet and adjusting their hat. You laugh, scratching your head. The criminal looks up at you, a look of shock on their face. " +
+                                "They have quickly realized, they've been caught. With a sigh, they offer up their wrists, and you cuff them. Sometimes, this feels like a pretty easy job. No riffle needed, hah!");
+            }
+            else if (player.Gear.Any(g => g.Name == "Electric Charged Dagger"))
+            {
+                Console.WriteLine("The criminal was waiting for you, a mask over their face, and a savage looking dagger grasped in their fist. A look in their tells you that they have a thirst for blood, specifically " +
+                                "your blood. With a gasp you again duck to the side, avoiding a violent slash aimed at your torso. You slash at them with your own dagger, which sparks with angry energy. " +
+                                "The criminal whips around, knicking your arm with the savage blade. Beads of blood well up " +
+                                "out of the gash, staining your clothes. The criminal laughs like a wild animal, attacking again. But you're ready this time, whipping asside, grabbing their arm as you do. Twisting it, the criminal " +
+                                "yelps. The dagger forced out of their grasp, their arm straining. You force them to their knees, struggling to cuff them as they fight against you every step of the way.");
+            }
+            else if (player.Gear.Any(g => g.Name == "Club"))
+            {
+                Console.WriteLine("You let in a sharp inhale as you feel the cold muzzle of a blaster pressed against your back. The criminal, in a gruff voice, orders you to raise your hands. You slowly do as ordered, " +
+                                "taking slow deep breaths as you feel the hands of the criminal snatching anything valuable off of you as they can, including your club. You glance back, your eyes flicking over their features. Their hand on the blaster " +
+                                "is steady, but their eyes are distracted. Just the opportunity you needed. You grab the blaster, and twist it around. The criminal yelps in surprise, their finger pulling the trigger. Luckily for the " +
+                                "both of you, the lazer shoots into a wall. You both wrestle for the blaster, and you end up the winner. Out of breath, you point the blaster at the criminal. Turning the tides. They growl, but slowly " +
+                                "raise their hands. You have won!");
+            }
+    else
+            {
+                Console.WriteLine($"After a thrilling chase, you manage to apprehend {target.Name}, claiming their bounty of {target.Bounty} credits.");
+            }
+        }
+
+        private void DisplayFailureStory(PlayerCharacter player, Criminal target)
+        {
+            if (player.Gear.Any(g => g.Name == "Lazer Gun"))
+            {
+                Console.WriteLine($"Despite wielding the {nameof(LazerGun)}, the criminal outmaneuvers you and escapes into the shadows.");
+            }
+            else if (player.Gear.Any(g => g.Name == "Crow Bar"))
+            {
+                Console.WriteLine($"Armed with the {nameof(Crowbar)}, you put up a valiant effort, but {target.Name} manages to escape your grasp.");
+            }
+            else
+            {
+                Console.WriteLine($"{target.Name} proves too clever and eludes your capture. Better luck next time!");
+            }
+        }
+
+        private int GetToolTimeBonus(Tools tool)
+        {
+            return tool switch
+            {
+                LazerGun => 5,
+                Crowbar => 10,
+                LazerRiffle => 25,
+                ElectricDagger => 15,
+                Club => 30,
+                _ => 0 // Default case for tools without time bonuses
+            };
+        }
+
+public static void Game(PlayerCharacter player, string sentence)
         {
             Console.WriteLine("Your sentence to type is:");
             Console.WriteLine(sentence);
@@ -439,62 +595,60 @@ namespace Program
             }
         }
 
-        public async void Guilds(PlayerCharacter player)
+        public async Task Guilds(PlayerCharacter player)
         {
             player.UpdateHungerAndFuel();
+
             List<Helpers> availableHelpers = new List<Helpers>
-                        {
-                            new Helpers("Shane","Will go off and collect criminals. Will give you 60% of the credits they earn.", WorkerRole.Soldier, 3000),
-                            new Helpers("Amanda", "Will make you food, so that you don't go hungry while out in space.", WorkerRole.Cook, 5000),
-                            new Helpers("Angela", "Will help you catch criminals, expanding the time limit for the mini game.", WorkerRole.Intern, 6000),
-                            new Helpers("Keith", "Will add solar and nuclear power to your ship, so you don't need fuel anymore.", WorkerRole.Engineer, 8000)
-                        };
+    {
+        new Helpers("Shane", "Will go off and collect criminals. Will give you 60% of the credits they earn.", WorkerRole.Soldier, 3000),
+        new Helpers("Amanda", "Will make you food, so that you don't go hungry while out in space.", WorkerRole.Cook, 5000),
+        new Helpers("Angela", "Will help you catch criminals, expanding the time limit for the mini game.", WorkerRole.Intern, 6000),
+        new Helpers("Keith", "Will add solar and nuclear power to your ship, so you don't need fuel anymore.", WorkerRole.Engineer, 8000)
+    };
+
             Console.WriteLine("To hire a person, please type the number beside their name.");
             for (int i = 0; i < availableHelpers.Count; i++)
             {
-                Console.WriteLine($"{i + 1}. {availableHelpers[i].Name} - Description: {availableHelpers[i].Skills} - Cost: {availableHelpers[i].Cost} credits"); //looks at list, and shows to player
+                Console.WriteLine($"{i + 1}. {availableHelpers[i].Name} - Role: {availableHelpers[i].Role} - Description: {availableHelpers[i].Skills} - Cost: {availableHelpers[i].Cost} credits");
             }
 
             Console.Write("Enter the number of the person you want to hire: ");
-            int choice = int.Parse(Console.ReadLine()); //Need to convert to correct formatting.
-
-            if (choice > 0 && choice <= availableHelpers.Count)
+            string input = Console.ReadLine();
+            if (int.TryParse(input, out int choice) && choice > 0 && choice <= availableHelpers.Count)
             {
                 Helpers helper = availableHelpers[choice - 1];
-                Console.WriteLine($"You have hired {helper.Name}, and they have joined your crew");
-                Console.WriteLine($"{helper.Name} will now begin to do their job.");
+                Console.WriteLine($"You have hired {helper.Name}, and they have joined your crew.");
+                player.Helpers.Add(helper);
 
-                if (helper.Role == WorkerRole.Soldier)
+                switch (helper.Role)
                 {
-                    player.Helpers.Add(helper)
-                    await helper.CompleteMissionAsync(helper, "Going off to catch a criminal in your name, and they will give you 60% of the reward.", 12);
-                    
-                    Console.WriteLine($"They have succeeded! {helper.Name} gives you 300 credits.");
-                    player.Credits += 300;
-                }
-                if (helper.Role == WorkerRole.Cook)
-                {
-                    player.Helpers.Add(helper);
-                    await helper.CompleteMissionAsync(helper, "Cooking food for you and any others you have on your ship.", 5);
+                    case WorkerRole.Soldier:
+                        await helper.CompleteMissionAsync(helper, "Going off to catch a criminal in your name, and they will give you 60% of the reward.", 12);
+                        Console.WriteLine($"They have succeeded! {helper.Name} gives you 300 credits.");
+                        player.Credits += 300;
+                        break;
 
-                    Console.WriteLine($"They have succeeded, and the ship smells like fresh cooked food! {helper.Name} has done a great job.");
-                    player.Hunger = 10000000000000;
-                }
-                if (helper.Role == WorkerRole.Intern)
-                {
-                    player.Helpers.Add(helper)
-                    Console.WriteLine("The intern plops down into a chair on your ship, waiting to head out to catch one of those bastardly criminals!");
+                    case WorkerRole.Cook:
+                        await helper.CompleteMissionAsync(helper, "Cooking food for you and any others you have on your ship.", 5);
+                        Console.WriteLine($"They have succeeded, and the ship smells like fresh cooked food! {helper.Name} has done a great job.");
+                        player.Hunger = int.MaxValue;
+                        break;
 
-                }
-                if (helper.Role == WorkerRole.Engineer)
-                {
-                    player.Helpers.Add(helper);
-                    await helper.CompleteMissionAsync(helper, "Fixing up your ship, upgrading it so it will never need that silly fuel ever again!", 30);
+                    case WorkerRole.Intern:
+                        Console.WriteLine("The intern plops down into a chair on your ship, waiting to head out to catch one of those bastardly criminals!");
+                        break;
 
-                    Console.WriteLine($"After quite some time, the tired but accomplished {helper.Name} reports that your ship is ready to go!");
-                    player.PlayerShip.Fuel = 1000000000000000;
-                }
+                    case WorkerRole.Engineer:
+                        await helper.CompleteMissionAsync(helper, "Fixing up your ship, upgrading it so it will never need that silly fuel ever again!", 30);
+                        Console.WriteLine($"After quite some time, the tired but accomplished {helper.Name} reports that your ship is ready to go!");
+                        player.PlayerShip.Fuel = int.MaxValue;
+                        break;
 
+                    default:
+                        Console.WriteLine($"Unknown role: {helper.Role}. No task assigned.");
+                        break;
+                }
             }
             else
             {

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
 
@@ -42,17 +41,28 @@ namespace Final_Project__Space_Guy
         public void UpdateHungerAndFuel()
         {
             TimeSpan elapsedTime = DateTime.Now - LastUpdate;
-            int Hours = (int)elapsedTime.TotalSeconds;
+            int hours = (int)elapsedTime.TotalSeconds; // Convert seconds to 'in-game hours'
 
-            if (Hours > 0)
+            if (hours > 0)
             {
-                Hunger -= Hours * 2; //Lost hunger and fuel over time
-                PlayerShip.Fuel -= Hours * 3;
-                LastUpdate = DateTime.Now; //Reset last updated time
+                Hunger -= hours * 2; // Decrease hunger over time
+                PlayerShip.Fuel -= hours * 3; // Decrease fuel over time
+                LastUpdate = DateTime.Now; // Reset last updated time
             }
 
-            Hunger = Math.Max(Hunger, 0); //make sure it can't get to negative hunger or fuel.
+            // Prevent values from going below 0
+            Hunger = Math.Max(Hunger, 0);
             PlayerShip.Fuel = Math.Max(PlayerShip.Fuel, 0);
+
+            // Warning messages for critical levels
+            if (Hunger <= 10)
+            {
+                Console.WriteLine("Warning: Hunger is critically low! You need to eat something soon.");
+            }
+            if (PlayerShip.Fuel <= 10)
+            {
+                Console.WriteLine("Warning: Fuel is critically low! You need to refuel soon.");
+            }
         }
 
         public void SaveGame() //Use of Json files
@@ -77,109 +87,61 @@ namespace Final_Project__Space_Guy
 
     public class Stuff
     {
-        public abstract class Tools //Inheritence/Polymophism
+        public abstract class Tools
         {
             public string Name { get; set; }
             public string Description { get; set; }
             public int Cost { get; set; }
             public int UsesLeft { get; set; }
 
-            public Tools()
+            public Tools(string name, string description, int cost, int usesLeft)
             {
-                //This tells the user how this tool helps. 
-               //certain amount of uses. Use this in inheritance and polymorphism
+                Name = name;
+                Description = description;
+                Cost = cost;
+                UsesLeft = usesLeft;
+            }
+
+            // Add a method to use the tool, decrementing UsesLeft
+            public virtual bool UseTool()
+            {
+                if (UsesLeft > 0)
+                {
+                    UsesLeft--;
+                    return true;
+                }
+                return false;
             }
         }
 
         public class LazerGun : Tools
         {
-            public string Name { get; set; }
-            public string Description { get; set; }
-            public int Cost { get; set; }
-            public int UsesLeft { get; set; }
-
-            public LazerGun()
-            {
-                Name = "Lazer Gun";
-                Description = "This tool will add five seconds to your time."; 
-                Cost = 30;
-                UsesLeft = 5; 
-            }
+            public LazerGun() : base("Lazer Gun", "Adds 5 seconds to your time limit during criminal hunting.", 30, 5) { }
         }
+
         public class Crowbar : Tools
         {
-            public string Name { get; set; }
-            public string Description { get; set; }
-            public int Cost { get; set; }
-            public int UsesLeft { get; set; }
-
-            public Crowbar()
-            {
-                Name = "Crow Bar";
-                Description = "This tool will add ten seconds to your time.";
-                Cost = 50;
-                UsesLeft = 3;
-            }
+            public Crowbar() : base("Crow Bar", "Adds 10 seconds to your time limit during criminal hunting.", 50, 3) { }
         }
+
         public class LazerRiffle : Tools
         {
-            public string Name { get; set; }
-            public string Description { get; set; }
-            public int Cost { get; set; }
-            public int UsesLeft { get; set; }
-
-            public LazerRiffle()
-            {
-                Name = "Lazer Riffle";
-                Description = "This tool will add twenty five seconds to your time";
-                Cost = 500;
-                UsesLeft = 5;
-            }
+            public LazerRiffle() : base("Lazer Riffle", "Adds 25 seconds to your time limit during criminal hunting.", 500, 5) { }
         }
+
         public class ElectricDagger : Tools
         {
-            public string Name { get; set; }
-            public string Description { get; set; }
-            public int Cost { get; set; }
-            public int UsesLeft { get; set; }
-
-            public ElectricDagger()
-            {
-                Name = "Electric Charged Dagger";
-                Description = "This tool will extend the time limit by 15 seconds";
-                Cost = 20;
-                UsesLeft = 5;
-            }
+            public ElectricDagger() : base("Electric Charged Dagger", "Adds 15 seconds to your time limit during criminal hunting.", 20, 5) { }
         }
+
         public class SaberOfLight : Tools
         {
-            public string Name { get; set; }
-            public string Description { get; set; }
-            public int Cost { get; set; }
-            public int UsesLeft { get; set; }
-
-            public SaberOfLight()
-            {
-                Name = "The Saber of Light";
-                Description = "This tool will scare the shit out of the criminal, and they will give up and come willingly";
-                Cost = 5200;
-                UsesLeft = 15;
-            }
+            public SaberOfLight() : base("Saber of Light", "Scares the criminal, causing them to surrender immediately.", 5200, 15) { }
         }
+
         public class Club : Tools
         {
-            public string Name { get; set; }
-            public string Description { get; set; }
-            public int Cost { get; set; }
-            public int UsesLeft { get; set; }
-
-            public Club()
-            {
-                Name = "A club.";
-                Description = "This tool will extend the time limit by 30 seconds";
-                Cost = 40;
-                UsesLeft = 5;
-            }
+            public Club() : base("Club", "Adds 30 seconds to your time limit during criminal hunting.", 40, 5) { }
         }
     }
 
@@ -254,8 +216,6 @@ namespace Final_Project__Space_Guy
             Role = role;
             Cost = cost; //They have to pay this every week (Use date time)
         }
-
-        private void CharacterStats(); //Fix this
 
         public async Task CompleteMissionAsync(Helpers helper, string Task, int HowLongTaskTakes) //Async, and date time (in case the hunger and fuel functions don't work haha,)
         {
@@ -339,7 +299,7 @@ namespace Final_Project__Space_Guy
 
     public static void DisplayPlanets()
     {
-        var planetTypes = Assembly.GetExecutingAssembly().GetTypes() //Why is this brokennn
+        var planetTypes = typeof(Program).Assembly.GetTypes() //Why is this brokennn
             .Where(t => t.GetCustomAttributes<PlanetAttribute>().Any()); //uuuuugh
 
         foreach (var type in planetTypes)
