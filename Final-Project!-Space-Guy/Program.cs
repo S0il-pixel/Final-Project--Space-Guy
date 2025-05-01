@@ -141,10 +141,6 @@ namespace Program
             }
             else
             {
-                Console.WriteLine("Invalid choice.");
-            }
-            else
-            {
                 Console.WriteLine("Not enough credits or invalid choice.");
             }
         }
