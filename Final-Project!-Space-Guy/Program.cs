@@ -383,7 +383,7 @@ namespace Program
             else
             {
                 Console.WriteLine($"Oops! You didn't type the sentence correctly, or you ran out of time. The criminal escaped.");
-                DisplayFailureStory(player, target); // Call failure story method
+                DisplayFailureStory(player, target); // Call failure story method 
             }
         }
 
