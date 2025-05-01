@@ -8,7 +8,6 @@ using System.IO;
 using Newtonsoft.Json;
 
 
-
 namespace Final_Project__Space_Guy 
 {
     public class PlayerCharacter //OOP
