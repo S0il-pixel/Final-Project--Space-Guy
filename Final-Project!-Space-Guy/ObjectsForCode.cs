@@ -299,7 +299,7 @@ namespace Final_Project__Space_Guy
 
     public static void DisplayPlanets()
     {
-        var planetTypes = typeof(Program).Assembly.GetTypes() //Why is this brokennn
+        var planetTypes = typeof(Program).Assembly.GetTypes() //This should be working now, I pray
             .Where(t => t.GetCustomAttributes<PlanetAttribute>().Any()); //uuuuugh
 
         foreach (var type in planetTypes)
