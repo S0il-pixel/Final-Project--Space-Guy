@@ -143,11 +143,6 @@ namespace Program
             {
                 Console.WriteLine("Invalid choice.");
             }
-        }
-
-
-        Console.WriteLine($"{itemChoice} purchased! Remaining credits: {player.Credits}");  //I'm going to make this larger, such as adding tools they can buy, and instead of weapon upgrades it's weapons that make the minigames easier.
-            }
             else
             {
                 Console.WriteLine("Not enough credits or invalid choice.");
