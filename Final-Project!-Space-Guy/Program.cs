@@ -255,21 +255,21 @@ namespace Program
                 case 1:
                     {
                         //mini game 1
-                        Game("The criminal runs, and jumps over a barel.")
+                        Game("The criminal runs, and jumps over a barel.");
                             
                         break;
                     }
                 case 2:
                     {
                         //mini game 2
-                        Game("The criminal tries to shoot you!")
+                        Game("The criminal tries to shoot you!");
                            
                         break;
                     }
                 case 3:
                     {
                         //mini game 3
-                        Game("You find your target, and throw a rock.")
+                        Game("You find your target, and throw a rock.");
                             
                         break;
                     }
